@@ -1,0 +1,14 @@
+#ifndef SOFA_PLUGIN_SOFANG_H
+#define SOFA_PLUGIN_SOFANG_H
+
+
+#include <sofa/helper/system/config.h>
+
+#ifdef SOFA_BUILD_SOFANG_PLUGIN
+#  define SOFA_SOFANG_API SOFA_EXPORT_DYNAMIC_LIBRARY
+#else
+#  define SOFA_SOFANG_API SOFA_IMPORT_DYNAMIC_LIBRARY
+#endif
+
+
+#endif // SOFA_PLUGIN_SOFANG_H
