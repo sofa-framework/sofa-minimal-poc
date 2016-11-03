@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
-project(SofaNG)
+
+project(TheSofaNG)
 
 set(SOFA_REPO_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../.." CACHE STRING "Path to Sofa")
 set(SOFA_KERNEL_SOURCE_DIR "${SOFA_REPO_SOURCE_DIR}/SofaKernel" CACHE STRING "Path to SofaKernel")
@@ -245,7 +246,7 @@ if(SOFANG_ENABLED)
     add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaSimulation "${CMAKE_CURRENT_BINARY_DIR}/SofaSimulation")
     sofa_add_plugin( SofaNG SofaNG )
     set(PLUGIN_SOFANG ON CACHE BOOL "" FORCE)
-    add_subdirectory( SofaNG_app SofaNG_app )
+    add_subdirectory( runSofaNG runSofaNG )
 endif()
 
 if(SOFA_BUILD_TESTS)
