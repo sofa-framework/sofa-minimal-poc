@@ -25,22 +25,34 @@ if(UNIX)
 endif(UNIX)
 
 find_package(SofaFramework REQUIRED)
-include_directories(${SOFA_KERNEL_SOURCE_DIR}/modules/)
-include_directories(${SOFA_KERNEL_SOURCE_DIR}/)
+find_package(SofaSimulation REQUIRED)
 
 set(HEADER_FILES
     sofang.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.inl   
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.h    
+    ## Dependencies
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.h
 )
 
 set(SOURCE_FILES
     initSofaNG.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.cpp
+    ## Dependencies
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.cpp
 )
 
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaBase/config.h.in "${CMAKE_BINARY_DIR}/include/SofaBase/config.h")
+configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaCommon/config.h.in "${CMAKE_BINARY_DIR}/include/SofaCommon/config.h")
 
+include_directories(${SOFA_KERNEL_SOURCE_DIR}/modules)
+include_directories(${SOFA_KERNEL_SOURCE_DIR})
 
 configure_file(sofang.h.in ${SOFANG_PLUGIN_NAME}/sofang.h)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${SOFANG_PLUGIN_NAME}/sofang.h DESTINATION "include/${SOFANG_PLUGIN_NAME}")
@@ -48,7 +60,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${SOFANG_PLUGIN_NAME}/sofang.h DESTINA
 set(SOFANG_PLUGIN_COMPILER_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS} -DSOFA_BUILD_SOFANG_PLUGIN")
 set(SOFANG_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
 
-add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES} )
+add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
 target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper)
 
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")

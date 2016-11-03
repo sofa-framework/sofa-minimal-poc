@@ -220,6 +220,7 @@ int main(int argc, char** argv)
     if (!files.empty())
         fileName = files[0];
 
+    plugins.push_back("SofaNG");
     for (unsigned int i=0; i<plugins.size(); i++)
         PluginManager::getInstance().loadPlugin(plugins[i]);
 

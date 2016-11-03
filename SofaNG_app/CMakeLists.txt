@@ -8,23 +8,19 @@ find_package(SofaSimulation REQUIRED)
 set(HEADER_FILES
     #sofang.h
     BatchGUI.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/RegularGridTopology.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MeshTopology.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/../modules/SofaGraphComponent/RequiredPlugin.cpp
+
 )
 
 set(SOURCE_FILES
     #initSofaNG.cpp
     Main.cpp
     BatchGUI.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/../modules/SofaGraphComponent/RequiredPlugin.cpp
+
 )
 
+configure_file(${SOFA_KERNEL_SOURCE_DIR}/../SofaGeneral/config.h.in "${CMAKE_BINARY_DIR}/include/SofaGeneral/config.h")
 
 if(APPLE)
 	set_source_files_properties(${RC_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
