@@ -20,6 +20,10 @@ set(SOURCE_FILES
 
 )
 
+# Add build macro for Windows
+set(RUNSOFANG_COMPILER_FLAGS "-DSOFA_BUILD_GRAPH_COMPONENT")
+
+
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/../SofaGeneral/config.h.in "${CMAKE_BINARY_DIR}/include/SofaGeneral/config.h")
 
 if(APPLE)
@@ -29,3 +33,4 @@ endif()
 add_executable(${PROJECT_NAME} ${RC_FILES} ${SOURCE_FILES})
 
 target_link_libraries(${PROJECT_NAME} PUBLIC SofaHelper SofaCore SofaSimulationCommon SofaSimulationTree SofaSimulationGraph)
+set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "${RUNSOFANG_COMPILER_FLAGS}")

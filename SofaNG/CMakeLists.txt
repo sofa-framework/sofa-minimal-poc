@@ -46,7 +46,23 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyContainer.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyContainer.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyContainer.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyContainer.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyContainer.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyContainer.cpp
 )
+
+set(SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFANG_PLUGIN)
+# Add build macro for Windows
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_TOPOLOGY)
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_LINEAR_SOLVER)
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_MECHANICS)
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_COLLISION)
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_LOADER)
+
+
 
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaBase/config.h.in "${CMAKE_BINARY_DIR}/include/SofaBase/config.h")
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaCommon/config.h.in "${CMAKE_BINARY_DIR}/include/SofaCommon/config.h")
@@ -61,13 +77,14 @@ set(SOFANG_PLUGIN_COMPILER_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS} -DSOFA_BUILD_S
 set(SOFANG_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
-target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper)
+target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType)
 
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_d")
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${SOFANG_PLUGIN_VERSION})
-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS}")
+# set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS}")
+target_compile_definitions(${PROJECT_NAME} PUBLIC COMPILE_DEFINITIONS ${SOFANG_PLUGIN_COMPILER_DEFINITIONS})
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${HEADER_FILES}")
 
 install(TARGETS ${PROJECT_NAME}

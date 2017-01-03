@@ -150,7 +150,7 @@ int main(int argc, char** argv)
     string colorsStatus = "auto";
 
     string gui_help = "choose the UI (";
-    gui_help += ('batch');
+    gui_help += "batch";
     gui_help += ")";
 
     sofa::helper::parse(&files, "This is a SOFA application. Here are the command line arguments")
