@@ -1,3 +1,6 @@
+## List of components / Roadmap (Kind of)
+https://goo.gl/XoYa9L
+
 ## BUGFIXES/TODOS:
  - [MechanicalObject] remove regulargrid deps 
  - [MechanicalObject] remove/move laparoscopicrigid
