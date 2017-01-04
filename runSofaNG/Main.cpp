@@ -131,7 +131,7 @@ int main(int argc, char** argv)
     unsigned int nbMSSASamples = 1;
     unsigned    computationTimeSampling=0; ///< Frequency of display of the computation time statistics, in number of animation steps. 0 means never.
 
-    string gui = "";
+    string gui = "batch";
     string verif = "";
 #ifdef SOFA_SMP
     string simulationType = "smp";
