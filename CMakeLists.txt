@@ -226,11 +226,11 @@ option(SOFA_USE_MASK "Use mask optimization" OFF)
 
 
 ### Testing
-option(SOFA_BUILD_TESTS "Compile the automatic tests for Sofa, along with the gtest library." OFF)
-if(SOFA_BUILD_TESTS)
+option(SOFANG_BUILD_TESTS "Compile the automatic tests for SofaNG, along with the gtest library." OFF)
+if(SOFANG_BUILD_TESTS)
     # Enable testing features of cmake, like the add_test() command.
     enable_testing()
-    add_subdirectory(extlibs/gtest)
+    add_subdirectory(${SOFA_REPO_SOURCE_DIR}/extlibs/gtest extlibs/gtest)
 endif()
 
 ### Extlibs
@@ -249,9 +249,12 @@ if(SOFANG_ENABLED)
     add_subdirectory( runSofaNG runSofaNG )
 endif()
 
-if(SOFA_BUILD_TESTS)
+if(SOFANG_BUILD_TESTS)
     # Depends on SofaSimulation
-    add_subdirectory(${SOFA_REPO_SOURCE_DIR}/tools/SofaGTestMain)
+    add_subdirectory(${SOFA_REPO_SOURCE_DIR}/tools/SofaGTestMain tools/SofaGTestMain)    
+
+    # Library used to write high level tests involving many components.
+    add_subdirectory(SofaNGTest SofaNGTest)
 endif()
 
 ## Custom
