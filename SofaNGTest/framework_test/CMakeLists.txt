@@ -18,11 +18,11 @@ set(SOURCE_FILES
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/Utils_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/Quater_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/SVector_test.cpp
-#    ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/io/MeshOBJ_test.cpp
-#    ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/io/MeshSTL_test.cpp
+    ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/io/MeshOBJ_test.cpp
+    ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/io/MeshSTL_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/system/FileMonitor_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/system/FileRepository_test.cpp
-#    ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/system/FileSystem_test.cpp
+    ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/system/FileSystem_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/system/atomic_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/logging/logging_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/main.cpp

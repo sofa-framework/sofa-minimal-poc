@@ -30,11 +30,18 @@ set(HEADER_FILES
 )
 
 set(SOURCE_FILES
-    #Elasticity_test.cpp
     ${LEGACY_SOFATEST_DIR}/InitPlugin_test.cpp
+    #Elasticity_test.cpp
     #PrimitiveCreation.cpp
-    # ${LEGACY_SOFATEST_DIR}/Sofa_test.cpp
+    #${LEGACY_SOFATEST_DIR}/Sofa_test.cpp
 )
+
+# Workaround to include symbol for TestMessageHandler for Windows
+# because: - cannot set the others test (dep to SceneCreator with a lot of deps)
+#          - TestMessageHandle is using dll export/import mechanism and so will make this library containing the necessary code in the .lib
+if(WIN32)
+    list(APPEND SOURCE_FILES dummyfile.cpp)
+endif()
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
 
