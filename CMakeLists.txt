@@ -250,9 +250,6 @@ if(SOFANG_ENABLED)
 endif()
 
 if(SOFANG_BUILD_TESTS)
-    # Depends on SofaSimulation
-    add_subdirectory(${SOFA_REPO_SOURCE_DIR}/tools/SofaGTestMain tools/SofaGTestMain)    
-
     # Library used to write high level tests involving many components.
     add_subdirectory(SofaNGTest SofaNGTest)
 endif()

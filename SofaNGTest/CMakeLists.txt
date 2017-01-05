@@ -9,8 +9,11 @@ find_package(SofaNG REQUIRED)
 
 set(LEGACY_SOFATEST_DIR ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaTest )
 
+# Sofaesque GTest 
+add_subdirectory(SofaNGGTestMain)    
 # Unit tests
 add_subdirectory(framework_test)
+add_subdirectory(SofaNGBaseMechanics_test)
 
 ## SofaTest
 set(HEADER_FILES

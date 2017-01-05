@@ -1,0 +1,12 @@
+# CMake package configuration file for SofaNGGTestMain
+
+@PACKAGE_INIT@
+
+find_package(SofaSimulation REQUIRED)
+find_package(GTest REQUIRED)
+
+if(NOT TARGET SofaNGGTestMain)
+    include("${CMAKE_CURRENT_LIST_DIR}/SofaNGGTestMainTargets.cmake")
+endif()
+
+check_required_components(SofaNGGTestMain)
