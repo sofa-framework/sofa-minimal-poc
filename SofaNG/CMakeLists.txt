@@ -31,8 +31,10 @@ set(HEADER_FILES
     sofang.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.inl   
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.h    
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.h
     ## Dependencies
+    #(MechanicalObject)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.h
@@ -42,7 +44,9 @@ set(SOURCE_FILES
     initSofaNG.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.cpp
     ## Dependencies
+    #(MechanicalObject)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.cpp
@@ -52,6 +56,7 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyContainer.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyContainer.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyContainer.cpp
+
 )
 
 set(SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFANG_PLUGIN)
@@ -61,6 +66,7 @@ list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_LINEAR_SOLVER)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_MECHANICS)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_COLLISION)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_LOADER)
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_IMPLICIT_ODE_SOLVER)
 
 
 
@@ -80,7 +86,7 @@ set(SOFANG_PLUGIN_COMPILER_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS} -DSOFA_BUILD_S
 set(SOFANG_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
-target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType)
+target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType SofaSimulationCommon)
 
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
