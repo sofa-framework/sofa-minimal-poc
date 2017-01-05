@@ -14,6 +14,7 @@ add_subdirectory(SofaNGGTestMain)
 # Unit tests
 add_subdirectory(framework_test)
 add_subdirectory(SofaNGBaseMechanics_test)
+add_subdirectory(SofaNGLoader_test)
 
 ## SofaTest
 set(HEADER_FILES
