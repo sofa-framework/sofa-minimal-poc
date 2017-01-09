@@ -123,7 +123,7 @@ int main(int argc, char** argv)
 
     string fileName ;
     bool        startAnim = false;
-    bool        printFactory = true;
+    bool        printFactory = false;
     bool        loadRecent = false;
     bool        temporaryFile = false;
     bool        testMode = false;
@@ -255,7 +255,8 @@ int main(int argc, char** argv)
     Node::SPtr groot = sofa::simulation::getSimulation()->load(fileName.c_str());
     if( !groot )
         groot = sofa::simulation::getSimulation()->createNewGraph("");
-    sofa::core::ObjectFactory::getInstance()->dump()  ;
+    if (printFactory)
+        sofa::core::ObjectFactory::getInstance()->dump()  ;
     sofa::simulation::getSimulation()->init(groot.get());
     batchgui->setScene(groot,fileName.c_str(), temporaryFile);
 
@@ -264,7 +265,7 @@ int main(int argc, char** argv)
 
     if (startAnim)
         groot->setAnimate(true);
-    if (true)
+    if (printFactory)
     {
         msg_info("") << "////////// FACTORY //////////" ;
         sofa::helper::printFactoryLog();

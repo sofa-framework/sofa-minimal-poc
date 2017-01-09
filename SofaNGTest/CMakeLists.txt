@@ -16,6 +16,7 @@ add_subdirectory(framework_test)
 add_subdirectory(SofaNGBaseMechanics_test)
 add_subdirectory(SofaNGLoader_test)
 #add_subdirectory(SofaNGImplicitOdeSolver_test)
+#add_subdirectory(SofaNGDeformable_test)
 
 ## SofaTest
 set(HEADER_FILES
