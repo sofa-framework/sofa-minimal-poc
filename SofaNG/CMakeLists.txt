@@ -38,15 +38,18 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.inl
+    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.h
+    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.inl
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
+
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.h
     # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.h
     # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.inl
-    ## Dependencies
+    ###### Dependencies
     #(MechanicalObject)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.h
@@ -68,7 +71,8 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshVTKLoader.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.cpp
+    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.cpp
     # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
@@ -106,6 +110,7 @@ list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DEFORMABLE)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_LINEAR_SOLVER)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BOUNDARY_CONDITION)
 # list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
 
 
 
@@ -130,7 +135,7 @@ set(SOFANG_PLUGIN_COMPILER_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS} -DSOFA_BUILD_S
 set(SOFANG_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
-target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType SofaSimulationCommon)
+target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType SofaSimulationCommon metis)
 ## Dependencies
 # LULinearSolver
 target_link_libraries(${PROJECT_NAME} PUBLIC newmat)

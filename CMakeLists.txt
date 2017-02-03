@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 3.1)
 
 project(TheSofaNG)
 
-set(SOFA_REPO_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../.." CACHE STRING "Path to Sofa")
-set(SOFA_KERNEL_SOURCE_DIR "${SOFA_REPO_SOURCE_DIR}/SofaKernel" CACHE STRING "Path to SofaKernel")
+set(SOFA_REPO_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../" CACHE PATH "Path to Sofa")
+set(SOFA_KERNEL_SOURCE_DIR "${SOFA_REPO_SOURCE_DIR}/SofaKernel" )
 
 if(NOT EXISTS ${SOFA_KERNEL_SOURCE_DIR}/framework)
     set(SOFA_KERNEL_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/SofaKernel")
     if(NOT EXISTS ${SOFA_KERNEL_SOURCE_DIR}/framework)
-        message( FATAL_ERROR "SofaKernel is not present or is inaccessible. Check if ${SOFA_KERNEL_SOURCE_DIR} exists or is accessible.")
+        message( FATAL_ERROR "Sofa is not present or is inaccessible. Check if ${SOFA_REPO_SOURCE_DIR} exists or is accessible.")
     endif()
 endif()
 
@@ -235,7 +235,8 @@ endif()
 
 ### Extlibs
 add_subdirectory(${SOFA_REPO_SOURCE_DIR}/extlibs "${CMAKE_CURRENT_BINARY_DIR}/extlibs")
-
+# Impose METIS library because of SparseLDLSolver
+set(SOFA_BUILD_METIS ON CACHE BOOL "" FORCE)
 
 ### Main Sofa subdirectories
 
