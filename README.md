@@ -9,5 +9,5 @@ https://goo.gl/XoYa9L
 ## TASKS:
  - ~~[Architecture] see how to remove topologies from mechanicalobject~~
  - [Architecture] see how to remove explicit deps of Point/Triangle/etc from topologyengine (by extension remove these deps for MechanicalObject)
- - [FixedConstraint] remove deps on topology ?
+ - [Architecture] think about topology change architecture (new classes ? decorator...)
  - [Tests] A lots of tests depends on SceneCreator (which depends on almost everything)
