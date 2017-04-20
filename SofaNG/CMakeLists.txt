@@ -29,19 +29,17 @@ find_package(SofaSimulation REQUIRED)
 
 set(HEADER_FILES
     sofang.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaExplicitOdeSolver/EulerSolver.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.inl   
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshVTKLoader.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
-    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.h
-    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.inl
 
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.h
@@ -65,14 +63,13 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
     initSofaNG.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaExplicitOdeSolver/EulerSolver.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshVTKLoader.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp
-    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.cpp
     # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
@@ -82,6 +79,7 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/GridTopology.cpp
+    #(MechanicalObject && FixedConstraint)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyContainer.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyContainer.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyContainer.cpp
@@ -97,6 +95,8 @@ set(SOURCE_FILES
 
 )
 
+set(BASE_LIBRARIES SofaCore SofaHelper SofaDefaultType SofaSimulationCommon)
+
 set(SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFANG_PLUGIN)
 # Add build macro for Windows
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_TOPOLOGY)
@@ -104,8 +104,8 @@ list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_LINEAR_SOLVER)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_MECHANICS)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_COLLISION)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_LOADER)
-list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_IMPLICIT_ODE_SOLVER)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DEFORMABLE)
+list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_EXPLICIT_ODE_SOLVER)
 #list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DENSE_SOLVER)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_LINEAR_SOLVER)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BOUNDARY_CONDITION)
@@ -113,8 +113,23 @@ list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BOUNDARY_CONDITION)
 list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
 
 
+# Other components (= "Kernel")
+set(OTHER_HEADER_FILES
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
+    )
 
-
+set(OTHER_SOURCE_FILES
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
+    )
+set(OTHER_LIBRARIES
+    metis
+    )
+set(SOFANG_PLUGIN_OTHER_COMPILER_DEFINITIONS "")
+list(APPEND SOFANG_PLUGIN_OTHER_COMPILER_DEFINITIONS SOFA_BUILD_IMPLICIT_ODE_SOLVER)
+####
 
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaBase/config.h.in "${CMAKE_BINARY_DIR}/include/SofaBase/config.h")
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaCommon/config.h.in "${CMAKE_BINARY_DIR}/include/SofaCommon/config.h")
@@ -135,7 +150,11 @@ set(SOFANG_PLUGIN_COMPILER_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS} -DSOFA_BUILD_S
 set(SOFANG_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
-target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType SofaSimulationCommon metis)
+# add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${OTHER_HEADER_FILES} ${OTHER_SOURCE_FILES} )
+
+target_link_libraries(${PROJECT_NAME} PUBLIC ${BASE_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} PUBLIC ${OTHER_LIBRARIES})
+
 ## Dependencies
 # LULinearSolver
 target_link_libraries(${PROJECT_NAME} PUBLIC newmat)
@@ -146,6 +165,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_d")
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${SOFANG_PLUGIN_VERSION})
 # set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "${SOFANG_PLUGIN_COMPILER_FLAGS}")
 target_compile_definitions(${PROJECT_NAME} PUBLIC COMPILE_DEFINITIONS ${SOFANG_PLUGIN_COMPILER_DEFINITIONS})
+#target_compile_definitions(${PROJECT_NAME} PUBLIC COMPILE_DEFINITIONS ${SOFANG_PLUGIN_OTHER_COMPILER_DEFINITIONS})
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${HEADER_FILES}")
 
 #install(TARGETS ${PROJECT_NAME}
