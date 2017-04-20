@@ -47,6 +47,8 @@ set(HEADER_FILES
     # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.inl
     ###### Dependencies
     #(MechanicalObject)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.h
@@ -74,6 +76,7 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.cpp
     # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.cpp
     ## Dependencies
     #(MechanicalObject)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.cpp
