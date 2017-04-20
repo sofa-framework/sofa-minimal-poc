@@ -15,7 +15,7 @@ add_subdirectory(SofaNGGTestMain)
 add_subdirectory(framework_test)
 add_subdirectory(SofaNGBaseMechanics_test)
 add_subdirectory(SofaNGLoader_test)
-add_subdirectory(SofaNGExplicitOdeSolver_test)
+#add_subdirectory(SofaNGExplicitOdeSolver_test) #too much deps on SceneCreator
 #add_subdirectory(SofaNGImplicitOdeSolver_test)
 #add_subdirectory(SofaNGDeformable_test)
 
