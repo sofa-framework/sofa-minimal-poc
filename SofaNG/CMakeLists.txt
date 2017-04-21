@@ -45,8 +45,13 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CubeModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/SphereModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/SphereModel.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DefaultContactManager.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DefaultPipeline.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BruteForceDetection.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DiscreteIntersection.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.inl
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.h
@@ -68,6 +73,19 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/MatrixLinearSolver.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/DefaultMultiMatrixAccessor.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/GraphScatteredTypes.h
+    #(DiscreteIntersection)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrUtility3.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrUtility3.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseIntTool.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CapsuleModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBModel.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBIntTool.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrOBBOBB.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrOBBOBB.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/RigidCapsuleModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/RigidCapsuleModel.inl
+
 
 )
 
@@ -83,6 +101,8 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/CGLinearSolver.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CubeModel.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/SphereModel.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.cpp
@@ -107,7 +127,14 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/MatrixLinearSolver.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/DefaultMultiMatrixAccessor.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/GraphScatteredTypes.cpp
-
+    #(DiscreteIntersection)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrUtility3.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseIntTool.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CapsuleModel.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBModel.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBIntTool.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrOBBOBB.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/RigidCapsuleModel.cpp
 )
 
 set(BASE_LIBRARIES SofaCore SofaHelper SofaDefaultType SofaSimulationCommon)
