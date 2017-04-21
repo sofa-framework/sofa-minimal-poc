@@ -6,6 +6,7 @@ https://goo.gl/XoYa9L
  - [MechanicalObject] remove/move laparoscopicrigid
  - [FixedConstraint] remove deps on topology ?
  - [Engines] template names
+ - [DiscreteIntersection] remove ugly dependencies
 
 ## TASKS:
  - ~~[Architecture] see how to remove topologies from mechanicalobject~~
