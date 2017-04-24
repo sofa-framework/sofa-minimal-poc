@@ -246,6 +246,8 @@ if(SOFANG_ENABLED)
     add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaFramework "${CMAKE_CURRENT_BINARY_DIR}/SofaFramework")
     add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaSimulation "${CMAKE_CURRENT_BINARY_DIR}/SofaSimulation")
     sofa_add_plugin( SofaNG SofaNG )
+    sofa_add_plugin( SofaNGExt SofaNGExt )
+
     set(PLUGIN_SOFANG ON CACHE BOOL "" FORCE)
     add_subdirectory( runSofaNG runSofaNG )
 endif()

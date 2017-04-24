@@ -176,12 +176,6 @@ configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaBase/config.h.in "${CMAKE_BINARY_DI
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaCommon/config.h.in "${CMAKE_BINARY_DIR}/include/SofaCommon/config.h")
 # configure_file(${SOFA_REPO_SOURCE_DIR}/SofaMisc/config.h.in "${CMAKE_BINARY_DIR}/include/SofaMisc/config.h")
 
-
-include_directories(${SOFA_REPO_SOURCE_DIR}/modules)
-include_directories(${SOFA_KERNEL_SOURCE_DIR}/modules)
-include_directories(${SOFA_KERNEL_SOURCE_DIR})
-include_directories(${SOFA_REPO_SOURCE_DIR}/)
-
 configure_file(sofang.h.in ${SOFANG_PLUGIN_NAME}/sofang.h)
 configure_file(SofaNGConfig.cmake.in ${CMAKE_BINARY_DIR}/cmake/SofaNGConfig.cmake)
 
@@ -192,6 +186,11 @@ set(SOFANG_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
 # add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${OTHER_HEADER_FILES} ${OTHER_SOURCE_FILES} )
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_REPO_SOURCE_DIR}/modules)
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_KERNEL_SOURCE_DIR}/modules)
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_KERNEL_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_REPO_SOURCE_DIR}/)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC ${BASE_LIBRARIES})
 #target_link_libraries(${PROJECT_NAME} PUBLIC ${OTHER_LIBRARIES})
