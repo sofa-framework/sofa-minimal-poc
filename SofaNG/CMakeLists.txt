@@ -24,27 +24,35 @@ if(UNIX)
     
 endif(UNIX)
 
+# NG-0 (helper, ...)
 find_package(SofaFramework REQUIRED)
 find_package(SofaSimulation REQUIRED)
 
+# NG-1
 set(HEADER_FILES
     sofang.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaExplicitOdeSolver/EulerSolver.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.inl   
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshVTKLoader.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/CGLinearSolver.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/CGLinearSolver.inl
+    # SofaMass
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.inl
+    # SofaFEM
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/ConstantForceField.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/ConstantForceField.inl
+    # SofaOdeSolver
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaExplicitOdeSolver/EulerSolver.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.h
+    # SofaLinearSolver
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/CGLinearSolver.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/CGLinearSolver.inl
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.inl
+    # SofaMapping
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.inl
+    # SofaConstraint
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PartialFixedConstraint.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PartialFixedConstraint.inl
+    # SofaCollision
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CubeModel.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/SphereModel.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/SphereModel.inl
@@ -52,17 +60,19 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DefaultPipeline.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BruteForceDetection.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DiscreteIntersection.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.h
-    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.h
-    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.inl
+    # SofaEngine
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndicesFromValues.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndicesFromValues.inl
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/ValuesFromIndices.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/ValuesFromIndices.inl
-    ###### Dependencies
+    # SofaLoader
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshVTKLoader.h
+    # SofaMechanics
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.inl
+
+    ## Dependencies
     #(MechanicalObject)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/MeshTopology.h
@@ -85,30 +95,37 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrOBBOBB.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/RigidCapsuleModel.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/RigidCapsuleModel.inl
-
-
 )
 
 set(SOURCE_FILES
     initSofaNG.cpp
+    # SofaMass
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.cpp
+    # SofaFEM
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/ConstantForceField.cpp
+    # SofaOdeSolver
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaExplicitOdeSolver/EulerSolver.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/EulerImplicitSolver.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshVTKLoader.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp    
+    # SofaLinearSolver
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseLinearSolver/CGLinearSolver.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/UniformMass.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.cpp
+    # SofaMapping
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/IdentityMapping.cpp
+    # SofaConstraint
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PartialFixedConstraint.cpp
+    # SofaCollision
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CubeModel.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/SphereModel.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLinearSolver/CholeskySolver.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedConstraint.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.cpp
-    # ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
+    # SofaEngine
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndicesFromValues.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/ValuesFromIndices.cpp
+    # SofaLoader
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshObjLoader.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaLoader/MeshVTKLoader.cpp
+    # SofaMechanics
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/MechanicalObject.cpp
+
     ## Dependencies
     #(MechanicalObject)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/RegularGridTopology.cpp
@@ -157,19 +174,19 @@ list(APPEND SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_ENGINE)
 
 
 # Other components (= "Kernel")
-set(OTHER_HEADER_FILES
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
-    )
+#set(OTHER_HEADER_FILES
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
+#    )
 
-set(OTHER_SOURCE_FILES
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
-    )
-set(OTHER_LIBRARIES
-    metis
-    )
-set(SOFANG_PLUGIN_OTHER_COMPILER_DEFINITIONS "")
-list(APPEND SOFANG_PLUGIN_OTHER_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
+#set(OTHER_SOURCE_FILES
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
+#    )
+#set(OTHER_LIBRARIES
+#    metis
+#    )
+#set(SOFANG_PLUGIN_OTHER_COMPILER_DEFINITIONS "")
+#list(APPEND SOFANG_PLUGIN_OTHER_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
 ####
 
 configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaBase/config.h.in "${CMAKE_BINARY_DIR}/include/SofaBase/config.h")
