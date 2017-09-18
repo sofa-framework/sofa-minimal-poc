@@ -24,19 +24,95 @@ if(UNIX)
     
 endif(UNIX)
 
-find_package(SofaFramework REQUIRED)
-find_package(SofaSimulation REQUIRED)
 find_package(SofaNG REQUIRED)
 
+# NG-2
 set(HEADER_FILES
     sofangext.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
+
+#    # SofaFEM
+##    TetrahedronFEMForceField # TODO: merge with Tetrahedral
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.h
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.inl
+##    HexahedronFEMForceField # TODO: merge with Hexahedral
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.h
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.inl
+##    TriangleFEMForceField  # TODO: merge with Triangular
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.h
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.inl
+
+#    # SofaSpring
+##    SpringForceField
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.h
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.inl
+##    StiffSpringForceField
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.h
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
+
+#    # SofaLinearSolver
+#    LU # direct
+#    LDL # direct
+#    PrecomputedLinearSolver # iterative
+
+#    # SofaOdeSolver
+#    StaticSolver
+#    RungeKutta
+
+#    # SofaAnimationLoop
+#    FreeMotionAnimationLoop
+
+#    # SofaMass
+#    MeshMatrixMass
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.h
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.inl
+
+#    # SofaMapping
+#    BarycentricMapping
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.h
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.inl
+#    RigidMapping
+
+#    # SofaConstraint
+#    GenericConstraintCorrection
+#    GenericConstraintSolver
+#    PrecomputedConstraintCorrection
+
+#    # SofaCollision
+#    LineModel
+#    TriangleModel
+#    PointModel
+#    LocalMinDistance
+
+#    # SofaOpenglVisual
+#    OglModel
+
+#    # SofaEngine
+#    BoxROI
+#    MergeROIs + MergeVectors + MeshBoundaryROI + MeshClosingEngine
+#    IndexValueMapper
+
+#    # SofaHaptics
+#    LCPForceFeedback
+
+#    # SofaMisc WARNING: nope
+#    ReadState
+#    WriteState
+
+
 )
 
 set(SOURCE_FILES
     initSofaNGExt.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.cpp
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.cpp
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.cpp
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.cpp
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
+#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
 )
 
 
@@ -51,7 +127,7 @@ set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS "")
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
 ####
 
-# configure_file(${SOFA_REPO_SOURCE_DIR}/SofaMisc/config.h.in "${CMAKE_BINARY_DIR}/include/SofaMisc/config.h")
+configure_file(${SOFA_REPO_SOURCE_DIR}/SofaMisc/config.h.in "${CMAKE_BINARY_DIR}/include/SofaMisc/config.h")
 ###
 
 # include_directories(${SOFA_REPO_SOURCE_DIR}/modules)
