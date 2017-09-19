@@ -26,6 +26,8 @@ endif(UNIX)
 
 find_package(SofaNG REQUIRED)
 
+
+
 # NG-2
 set(HEADER_FILES
     sofangext.h
@@ -77,7 +79,9 @@ set(HEADER_FILES
 
     # SofaConstraint
     # GenericConstraintCorrection
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.h
     # GenericConstraintSolver
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintSolver.h
     # PrecomputedConstraintCorrection
 
     # SofaCollision
@@ -127,6 +131,8 @@ set(HEADER_FILES
 
 )
 
+
+
 set(SOURCE_FILES
     initSofaNGExt.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
@@ -139,6 +145,8 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/FreeMotionAnimationLoop.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintSolver.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -157,6 +165,7 @@ set(SOURCE_FILES
 )
 
 
+
 set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFANGEXT_PLUGIN)
 
 set(SOFANGEXT_LIBRARIES
@@ -168,10 +177,10 @@ set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS "")
 # Add build macros for Windows
 #(SparseLDLSolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
-#(TetrahedronFEMForceField & HexahedronFEMForceField & TriangleFEMForceField)
+#(TetrahedronFEMForceField, HexahedronFEMForceField, TriangleFEMForceField)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SIMPLE_FEM)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FEM)
-#(SpringForceField & StiffSpringForceField)
+#(SpringForceField, StiffSpringForceField)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DEFORMABLE)
 #(MeshMatrixMass)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
@@ -179,7 +188,7 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_MECHANICS)
 #(BoxROI)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_ENGINE)
-#(FreeMotionAnimationLoop)
+#(FreeMotionAnimationLoop, GenericConstraintCorrection, GenericConstraintSolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_CONSTRAINT)
 
 ####
