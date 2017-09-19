@@ -108,6 +108,7 @@ set(HEADER_FILES
 
     # SofaOpenglVisual
     # OglModel
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaOpenglVisual/OglModel.h
 
     # SofaEngine
     # BoxROI
@@ -140,6 +141,8 @@ set(HEADER_FILES
     #(HexahedronFEMForceField)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.h
     #(MeshMatrixMass)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetGeometryAlgorithms.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetGeometryAlgorithms.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetGeometryAlgorithms.h
@@ -152,12 +155,17 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetGeometryAlgorithms.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.inl
     #(FreeMotionAnimationLoop)
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/ConstraintSolverImpl.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LCPConstraintSolver.h
-
+    #(OglModel)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualModelImpl.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyModifier.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyModifier.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyModifier.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyModifier.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyModifier.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyModifier.h
 )
 
 
@@ -188,21 +196,30 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaOpenglVisual/OglModel.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.cpp
     #(MeshMatrixMass)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetGeometryAlgorithms.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetGeometryAlgorithms.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetGeometryAlgorithms.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetGeometryAlgorithms.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetGeometryAlgorithms.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.cpp
     #(FreeMotionAnimationLoop)
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/ConstraintSolverImpl.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LCPConstraintSolver.cpp
+    #(OglModel)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualModelImpl.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyModifier.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyModifier.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyModifier.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyModifier.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyModifier.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyModifier.cpp
 )
 
 
@@ -235,6 +252,9 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_ENGINE)
 #(SurfacePressureForceField)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BOUNDARY_CONDITION)
+#(OglModel)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_OPENGL_VISUAL)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_VISUAL)
 
 ####
 
