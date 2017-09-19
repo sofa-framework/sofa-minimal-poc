@@ -32,16 +32,16 @@ set(HEADER_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
 
-#    # SofaFEM
-##    TetrahedronFEMForceField # TODO: merge with Tetrahedral
-#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.h
-#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.inl
-##    HexahedronFEMForceField # TODO: merge with Hexahedral
-#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.h
-#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.inl
-##    TriangleFEMForceField  # TODO: merge with Triangular
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.h
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.inl
+    # SofaFEM
+    # TetrahedronFEMForceField # TODO: merge with Tetrahedral
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.inl
+    # HexahedronFEMForceField # TODO: merge with Hexahedral
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.inl
+    # TriangleFEMForceField  # TODO: merge with Triangular
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.inl
 
 #    # SofaSpring
 ##    SpringForceField
@@ -100,19 +100,25 @@ set(HEADER_FILES
     # ReadState
     # WriteState
 
-
+    # Dependencies
+    #(HexahedronFEMForceField)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.h
 )
 
 set(SOURCE_FILES
     initSofaNGExt.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
-#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.cpp
-#    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.cpp
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.cpp
 #    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.cpp
 #    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
 #    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
+    
+    # Dependencies
+    #(HexahedronFEMForceField)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.cpp
 )
 
 
@@ -127,6 +133,9 @@ set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS "")
 # Add build macros for Windows
 #(SparseLDLSolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
+#(TetrahedronFEMForceField & HexahedronFEMForceField & TriangleFEMForceField)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SIMPLE_FEM)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FEM)
 ####
 
 configure_file(${SOFA_REPO_SOURCE_DIR}/SofaMisc/config.h.in "${CMAKE_BINARY_DIR}/include/SofaMisc/config.h")
