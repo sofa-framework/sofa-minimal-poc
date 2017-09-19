@@ -105,8 +105,21 @@ set(HEADER_FILES
     # BoxROI
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.inl
-    # MergeROIs + MergeVectors + MeshBoundaryROI + MeshClosingEngine
+    # MergeROIs
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeROIs.h
+    # MergeVectors
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.inl
+    # MeshBoundaryROI
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshBoundaryROI.h
+    # MeshClosingEngine
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.inl
     # IndexValueMapper
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.inl
+    # SphereROI ?
+    # GenerateCylinder ?
 
     # SofaHaptics
     # LCPForceFeedback
@@ -159,6 +172,11 @@ set(SOURCE_FILES
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeROIs.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshBoundaryROI.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -202,6 +220,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_ENGINE)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_CONSTRAINT)
 #(SparseLUSolver, SparseLDLSolver, SparseCholeskySolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
+#(IndexValueMapper, MergeROIs, MergeVectors, MeshBoundaryROI, MeshClosingEngine)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_ENGINE)
 
 ####
 
