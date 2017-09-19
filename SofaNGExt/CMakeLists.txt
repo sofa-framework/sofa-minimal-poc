@@ -62,6 +62,7 @@ set(HEADER_FILES
 
     # SofaAnimationLoop
     # FreeMotionAnimationLoop
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/FreeMotionAnimationLoop.h
 
     # SofaMass
     # MeshMatrixMass
@@ -120,6 +121,9 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.inl
+    #(FreeMotionAnimationLoop)
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/ConstraintSolverImpl.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LCPConstraintSolver.h
 
 )
 
@@ -134,6 +138,7 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/FreeMotionAnimationLoop.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -146,6 +151,9 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetGeometryAlgorithms.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.cpp
+    #(FreeMotionAnimationLoop)
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/ConstraintSolverImpl.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LCPConstraintSolver.cpp
 )
 
 
@@ -171,6 +179,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_MECHANICS)
 #(BoxROI)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_ENGINE)
+#(FreeMotionAnimationLoop)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_CONSTRAINT)
 
 ####
 
