@@ -51,13 +51,13 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
 
     # SofaLinearSolver
-    # LU # direct
+    # SparseLUSolver # direct
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.h
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.inl
-    # LDL # directK
+    # SparseLDLSolver # directK
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
-    # Cholesky
+    # SparseCholeskySolver
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.h
     # PrecomputedLinearSolver # iterative
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.h
@@ -65,6 +65,8 @@ set(HEADER_FILES
     # JacobiPreconditioner
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.inl
+    # ShewchukPCGLinearSolver
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/ShewchukPCGLinearSolver.h
 
     # SofaOdeSolver
     # StaticSolver
@@ -171,6 +173,7 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/ShewchukPCGLinearSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeROIs.cpp
