@@ -31,7 +31,7 @@ find_package(SofaNG REQUIRED)
 # NG-2
 set(HEADER_FILES
     sofangext.h
-    # SofaFEM
+    # SofaFem
     # TetrahedronFEMForceField # TODO: merge with Tetrahedral
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.inl
@@ -41,6 +41,12 @@ set(HEADER_FILES
     # TriangleFEMForceField  # TODO: merge with Triangular
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.inl
+    # RestShapeSpringsForceField
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.inl
+    # SurfacePressureForceField
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.inl
 
     # SofaSpring
     # SpringForceField
@@ -180,6 +186,8 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshBoundaryROI.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -211,7 +219,7 @@ set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS "")
 #(TetrahedronFEMForceField, HexahedronFEMForceField, TriangleFEMForceField)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SIMPLE_FEM)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FEM)
-#(SpringForceField, StiffSpringForceField)
+#(SpringForceField, StiffSpringForceField, RestShapeSpringsForceField)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DEFORMABLE)
 #(MeshMatrixMass)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
@@ -225,6 +233,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_CONSTRAINT)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
 #(IndexValueMapper, MergeROIs, MergeVectors, MeshBoundaryROI, MeshClosingEngine)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_ENGINE)
+#(SurfacePressureForceField)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BOUNDARY_CONDITION)
 
 ####
 
