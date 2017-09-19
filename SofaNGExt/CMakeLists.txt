@@ -51,17 +51,17 @@ set(HEADER_FILES
 #    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.h
 #    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
 
-#    # SofaLinearSolver
-#    LU # direct
-#    LDL # direct
-#    PrecomputedLinearSolver # iterative
+    # SofaLinearSolver
+    # LU # direct
+    # LDL # direct
+    # PrecomputedLinearSolver # iterative
 
-#    # SofaOdeSolver
-#    StaticSolver
-#    RungeKutta
+    # SofaOdeSolver
+    # StaticSolver
+    # RungeKutta
 
-#    # SofaAnimationLoop
-#    FreeMotionAnimationLoop
+    # SofaAnimationLoop
+    # FreeMotionAnimationLoop
 
 #    # SofaMass
 #    MeshMatrixMass
@@ -74,31 +74,31 @@ set(HEADER_FILES
 #    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.inl
 #    RigidMapping
 
-#    # SofaConstraint
-#    GenericConstraintCorrection
-#    GenericConstraintSolver
-#    PrecomputedConstraintCorrection
+    # SofaConstraint
+    # GenericConstraintCorrection
+    # GenericConstraintSolver
+    # PrecomputedConstraintCorrection
 
-#    # SofaCollision
-#    LineModel
-#    TriangleModel
-#    PointModel
-#    LocalMinDistance
+    # SofaCollision
+    # LineModel
+    # TriangleModel
+    # PointModel
+    # LocalMinDistance
 
-#    # SofaOpenglVisual
-#    OglModel
+    # SofaOpenglVisual
+    # OglModel
 
-#    # SofaEngine
-#    BoxROI
-#    MergeROIs + MergeVectors + MeshBoundaryROI + MeshClosingEngine
-#    IndexValueMapper
+    # SofaEngine
+    # BoxROI
+    # MergeROIs + MergeVectors + MeshBoundaryROI + MeshClosingEngine
+    # IndexValueMapper
 
-#    # SofaHaptics
-#    LCPForceFeedback
+    # SofaHaptics
+    # LCPForceFeedback
 
-#    # SofaMisc WARNING: nope
-#    ReadState
-#    WriteState
+    # SofaMisc TODO: CHANGE THE NAME
+    # ReadState
+    # WriteState
 
 
 )
@@ -124,11 +124,12 @@ set(SOFANGEXT_LIBRARIES
     )
 
 set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS "")
+# Add build macros for Windows
+#(SparseLDLSolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
 ####
 
 configure_file(${SOFA_REPO_SOURCE_DIR}/SofaMisc/config.h.in "${CMAKE_BINARY_DIR}/include/SofaMisc/config.h")
-###
 
 # include_directories(${SOFA_REPO_SOURCE_DIR}/modules)
 # include_directories(${SOFA_KERNEL_SOURCE_DIR}/modules)
