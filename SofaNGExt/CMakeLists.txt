@@ -90,6 +90,8 @@ set(HEADER_FILES
 
     # SofaEngine
     # BoxROI
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.inl
     # MergeROIs + MergeVectors + MeshBoundaryROI + MeshClosingEngine
     # IndexValueMapper
 
@@ -131,7 +133,8 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
-    
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.cpp
+
     # Dependencies
     #(HexahedronFEMForceField)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.cpp
@@ -166,6 +169,9 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DEFORMABLE)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
 #(BarycentricMapping)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_MECHANICS)
+#(BoxROI)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_ENGINE)
+
 ####
 
 configure_file(${SOFA_REPO_SOURCE_DIR}/SofaMisc/config.h.in "${CMAKE_BINARY_DIR}/include/SofaMisc/config.h")
