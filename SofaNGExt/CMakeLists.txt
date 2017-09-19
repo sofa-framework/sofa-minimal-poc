@@ -63,10 +63,10 @@ set(HEADER_FILES
     # SofaAnimationLoop
     # FreeMotionAnimationLoop
 
-#    # SofaMass
-#    MeshMatrixMass
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.h
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.inl
+    # SofaMass
+    # MeshMatrixMass
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.inl
 
 #    # SofaMapping
 #    BarycentricMapping
@@ -103,6 +103,22 @@ set(HEADER_FILES
     # Dependencies
     #(HexahedronFEMForceField)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.h
+    #(MeshMatrixMass)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetGeometryAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetGeometryAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetGeometryAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetGeometryAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetGeometryAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetGeometryAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetGeometryAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetGeometryAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetGeometryAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetGeometryAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.inl
+
 )
 
 set(SOURCE_FILES
@@ -113,12 +129,20 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
 #    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
     
     # Dependencies
     #(HexahedronFEMForceField)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.cpp
+    #(MeshMatrixMass)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetGeometryAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetGeometryAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetGeometryAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetGeometryAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetGeometryAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetGeometryAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/NumericalIntegrationDescriptor.cpp
 )
 
 
@@ -138,6 +162,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SIMPLE_FEM)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FEM)
 #(SpringForceField & StiffSpringForceField)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DEFORMABLE)
+#(MeshMatrixMass)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
 ####
 
 configure_file(${SOFA_REPO_SOURCE_DIR}/SofaMisc/config.h.in "${CMAKE_BINARY_DIR}/include/SofaMisc/config.h")
