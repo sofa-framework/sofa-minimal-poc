@@ -109,6 +109,8 @@ set(HEADER_FILES
     # SofaOpenglVisual
     # OglModel
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaOpenglVisual/OglModel.h
+    # NewmarkImplicitSolver
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscSolver/NewmarkImplicitSolver.h
 
     # SofaEngine
     # BoxROI
@@ -203,6 +205,7 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaOpenglVisual/OglModel.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/ReadState.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscSolver/NewmarkImplicitSolver.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -265,6 +268,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_VISUAL)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_LOADER)
 #(WriteState)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_EXPORTER)
+#(NewmarkImplicitSolver)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_SOLVER)
 
 ####
 
