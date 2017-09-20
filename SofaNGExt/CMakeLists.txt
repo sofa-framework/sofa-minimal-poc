@@ -134,6 +134,8 @@ set(HEADER_FILES
 
     # SofaHaptics
     # LCPForceFeedback
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.inl
 
     # SofaImportExport
     # ReadState
@@ -206,6 +208,7 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/ReadState.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscSolver/NewmarkImplicitSolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -270,6 +273,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_LOADER)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_EXPORTER)
 #(NewmarkImplicitSolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_SOLVER)
+#(LCPForceFeedback)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_HAPTICS)
 
 ####
 
