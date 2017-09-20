@@ -57,14 +57,16 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
 
     # SofaLinearSolver
+    # LULinearSolver
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaDenseSolver/LULinearSolver.h
     # SparseLUSolver # direct
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.h
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.inl
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.inl
     # SparseLDLSolver # directK
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
     # SparseCholeskySolver
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.h
     # PrecomputedLinearSolver # iterative
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.inl
@@ -191,9 +193,10 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/FreeMotionAnimationLoop.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintSolver.cpp
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.cpp
+#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaDenseSolver/LULinearSolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
-#    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/ShewchukPCGLinearSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.cpp
@@ -241,6 +244,7 @@ set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFANGEXT_PLUGIN)
 set(SOFANGEXT_LIBRARIES
     SofaNG
     metis
+    csparse # SparseLUSolver, SparseCholeskySolver
     )
 
 set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS "")
