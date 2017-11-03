@@ -88,6 +88,12 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrUtility3.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseIntTool.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CapsuleModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CapsuleIntTool.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CapsuleIntTool.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrSphereOBB.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrSphereOBB.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrCapsuleOBB.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrCapsuleOBB.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBModel.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBModel.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBIntTool.h
@@ -117,6 +123,10 @@ set(SOURCE_FILES
     # SofaCollision
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CubeModel.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/SphereModel.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DefaultContactManager.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DefaultPipeline.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BruteForceDetection.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/DiscreteIntersection.cpp
     # SofaEngine
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndicesFromValues.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/ValuesFromIndices.cpp
@@ -148,6 +158,9 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrUtility3.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseIntTool.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CapsuleModel.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/CapsuleIntTool.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrSphereOBB.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrCapsuleOBB.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBModel.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/OBBIntTool.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/IntrOBBOBB.cpp
