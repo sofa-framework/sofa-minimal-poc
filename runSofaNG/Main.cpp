@@ -246,13 +246,12 @@ int main(int argc, char** argv)
     plugins.push_back("SofaNG");
     plugins.push_back("SofaNGExt");
     for (unsigned int i=0; i<plugins.size(); i++)
-        PluginManager::getInstance().loadPlugin(plugins[i]);
-
-    // to force loading plugin SofaPython if existing
     {
-        std::ostringstream no_error_message; // no to get an error on the console if SofaPython does not exist
-        sofa::helper::system::PluginManager::getInstance().loadPlugin("SofaPython",&no_error_message);
+        PluginManager::getInstance().loadPlugin(plugins[i]);
     }
+    // force loading plugin SofaPython if existing
+    std::ostringstream no_error_message; // no to get an error on the console if SofaPython does not exist
+    PluginManager::getInstance().loadPlugin("SofaPython", PluginManager::getDefaultSuffix(), true, &no_error_message);
 
     PluginManager::getInstance().init();
     sofa::gui::BatchGUI* batchgui = NULL;
