@@ -158,6 +158,13 @@ set(HEADER_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.inl
 
+    # Other
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.inl
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.h
+
+
     # Dependencies
     #(HexahedronFEMForceField)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/SparseGridTopology.h
@@ -235,6 +242,14 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleModel.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LocalMinDistance.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/MinProximityIntersection.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.cpp
+
+
+
+    # VisualStyle
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.cpp
+
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -282,22 +297,14 @@ set(SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS "")
 #(TetrahedronFEMForceField, HexahedronFEMForceField, TriangleFEMForceField)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SIMPLE_FEM)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FEM)
-#(SpringForceField, StiffSpringForceField, RestShapeSpringsForceField)
-#list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_DEFORMABLE) # already in SofaNG
 #(MeshMatrixMass)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_FORCEFIELD)
-#(BarycentricMapping)
-#list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_MECHANICS) # already in SofaNG
 #(BoxROI)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_ENGINE)
 #(FreeMotionAnimationLoop, GenericConstraintCorrection, GenericConstraintSolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_CONSTRAINT)
 #(SparseLUSolver, SparseLDLSolver, SparseCholeskySolver)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SPARSE_SOLVER)
-#(IndexValueMapper, MergeROIs, MergeVectors, MeshBoundaryROI, MeshClosingEngine)
-#list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_ENGINE) # already in SofaNG
-#(SurfacePressureForceField)
-#list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BOUNDARY_CONDITION) # already in SofaNG
 #(OglModel)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_OPENGL_VISUAL)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BASE_VISUAL)
@@ -311,6 +318,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_SOLVER)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_HAPTICS)
 #(LineModel)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MESH_COLLISION)
+#(RigidMapping)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_RIGID)
 
 ####
 
