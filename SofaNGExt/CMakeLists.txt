@@ -31,130 +31,96 @@ find_package(SofaNG REQUIRED)
 # NG-2
 set(HEADER_FILES
     sofangext.h
+
     # SofaFem
-    # TetrahedronFEMForceField # TODO: merge with Tetrahedral
+    # TODO: merge {Tetra,Hexa}hedronFEMForceField with {Tetra,Hexa}hedralFEMForceField
+    # TODO: merge TriangleFEMForceField with TriangularFEMForceField
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.inl
-    # HexahedronFEMForceField # TODO: merge with Hexahedral
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.inl
-    # TriangleFEMForceField  # TODO: merge with Triangular
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.inl
-    # RestShapeSpringsForceField
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.inl
-    # SurfacePressureForceField
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.inl
 
     # SofaSpring
-    # SpringForceField
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.inl
-    # StiffSpringForceField
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.inl
 
     # SofaLinearSolver
-    # LULinearSolver
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaDenseSolver/LULinearSolver.h
-    # SparseLUSolver # direct
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.inl
-    # SparseLDLSolver # directK
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.inl
-    # SparseCholeskySolver
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.h
-    # PrecomputedLinearSolver # iterative
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.inl
-    # JacobiPreconditioner
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.inl
-    # ShewchukPCGLinearSolver
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/ShewchukPCGLinearSolver.h
-
     # SofaOdeSolver
     # StaticSolver
     # RungeKutta
 
     # SofaAnimationLoop
-    # FreeMotionAnimationLoop
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/FreeMotionAnimationLoop.h
 
     # SofaMass
-    # MeshMatrixMass
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.inl
 
     # SofaMapping
-    # BarycentricMapping
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.inl
     # RigidMapping
 
     # SofaConstraint
-    # GenericConstraintCorrection
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.h
-    # GenericConstraintSolver
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintSolver.h
     # PrecomputedConstraintCorrection
 
     # SofaCollision
-    # PointModel
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointModel.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointModel.inl
-    # LineModel
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineModel.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineModel.inl
-    # TriangleModel
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleModel.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleModel.inl
-    # LocalMinDistance
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LocalMinDistance.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LocalMinDistance.inl
-    # MinProximityIntersection
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/MinProximityIntersection.h
 
-
     # SofaOpenglVisual
-    # OglModel
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaOpenglVisual/OglModel.h
-    # NewmarkImplicitSolver
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscSolver/NewmarkImplicitSolver.h
 
     # SofaEngine
-    # BoxROI
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.inl
-    # MergeROIs
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeROIs.h
-    # MergeVectors
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.inl
-    # MeshBoundaryROI
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshBoundaryROI.h
-    # MeshClosingEngine
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.inl
-    # IndexValueMapper
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.inl
     # SphereROI ?
     # GenerateCylinder ?
 
     # SofaHaptics
-    # LCPForceFeedback
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.inl
 
     # SofaImportExport
-    # ReadState
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/ReadState.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/ReadState.inl
-    # WriteState
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.inl
 
@@ -162,26 +128,12 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.inl
 
-
-    # Other
+    # Other (improving scene coverage)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.inl
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.inl
     ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/DefaultCollisionGroupManager.h
-
 
 
     # Dependencies
@@ -225,64 +177,86 @@ set(HEADER_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralExplicitOdeSolver/RungeKutta4Solver.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/StaticSolver.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LMConstraintSolver.h
-
 )
 
 
 
 set(SOURCE_FILES
     initSofaNGExt.cpp
+
+    # SofaFem
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/TetrahedronFEMForceField.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaSimpleFem/HexahedronFEMForceField.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangleFEMForceField.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.cpp
+
+    # SofaSpring
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/SpringForceField.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/StiffSpringForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/FreeMotionAnimationLoop.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintSolver.cpp
+
+    # SofaLinearSolver
 #    ${SOFA_REPO_SOURCE_DIR}/modules/SofaDenseSolver/LULinearSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLUSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseLDLSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/SparseCholeskySolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/JacobiPreconditioner.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaPreconditioner/ShewchukPCGLinearSolver.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaSparseSolver/PrecomputedLinearSolver.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeROIs.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshBoundaryROI.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/RestShapeSpringsForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/SurfacePressureForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaOpenglVisual/OglModel.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/ReadState.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscSolver/NewmarkImplicitSolver.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.cpp
+    # SofaOdeSolver
+    # StaticSolver
+    # RungeKutta
+
+    # SofaAnimationLoop
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/FreeMotionAnimationLoop.cpp
+
+    # SofaMass
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscForceField/MeshMatrixMass.cpp
+
+    # SofaMapping
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
+
+    # SofaConstraint
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintSolver.cpp
+    # PrecomputedConstraintCorrection
+
+    # SofaCollision
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointModel.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineModel.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleModel.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LocalMinDistance.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/MinProximityIntersection.cpp
+
+    # SofaOpenglVisual
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaOpenglVisual/OglModel.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscSolver/NewmarkImplicitSolver.cpp
+
+    # SofaEngine
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaEngine/BoxROI.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeROIs.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MergeVectors.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshBoundaryROI.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/MeshClosingEngine.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralEngine/IndexValueMapper.cpp
+    # SphereROI ?
+    # GenerateCylinder ?
+
+    # SofaHaptics
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.cpp
+
+    # SofaImportExport
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/ReadState.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.cpp
+
+    # SofaMass
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.cpp
+
+    # Other (improving scene coverage)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.cpp
     ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/DefaultCollisionGroupManager.cpp
-
-
-
-    # VisualStyle
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.cpp
-
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.cpp
 
 
     # Dependencies
