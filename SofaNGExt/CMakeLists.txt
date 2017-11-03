@@ -158,11 +158,29 @@ set(HEADER_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.h
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.inl
 
+    # SofaMass
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.inl
+
+
     # Other
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.inl
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.inl
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.inl
+
 
 
     # Dependencies
@@ -244,11 +262,19 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/MinProximityIntersection.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.cpp
 
 
 
     # VisualStyle
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.cpp
+
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.cpp
 
 
     # Dependencies
