@@ -201,6 +201,47 @@ if(MSVC)
 endif()
 
 
+### Mask
+option(SOFA_USE_MASK "Use mask optimization" OFF)
+
+### SOFA_DEV_TOOL
+option(SOFA_WITH_DEVTOOLS "Compile with developement extra features." ON)
+
+### Threading
+option(SOFA_WITH_THREADING "Compile sofa with thread-safetiness support (PARTIAL/EXPERIMENTAL)" ON)
+
+### Experimental
+option(SOFA_WITH_EXPERIMENTAL_FEATURES "Compile sofa with exprimental features regarding sparse matrices treatments under mappings" OFF)
+
+
+### Sofa using type double or float or both
+set(SOFA_FLOATING_POINT_TYPE both CACHE STRING
+"Type used for floating point values in SOFA. It actually determines:
+ - what template instanciations will be compiled (via the definition of the
+   SOFA_FLOAT and SOFA_DOUBLE macros)
+ - what is the type behind the 'SReal' typedef used throughout SOFA. (If 'both'
+   is selected, SReal defaults to double.)")
+set_property(CACHE SOFA_FLOATING_POINT_TYPE PROPERTY STRINGS float double both)
+
+if(${SOFA_FLOATING_POINT_TYPE} STREQUAL double)
+    set(SOFA_DOUBLE 1)          # Used in sofa/config.h.in
+elseif(${SOFA_FLOATING_POINT_TYPE} STREQUAL float)
+    set(SOFA_FLOAT 1)           # Used in sofa/config.h.in
+endif()
+
+if(${SOFA_FLOATING_POINT_TYPE} STREQUAL float)
+    set(SOFA_WITH_FLOAT 1)
+endif()
+if(${SOFA_FLOATING_POINT_TYPE} STREQUAL double)
+    set(SOFA_WITH_DOUBLE 1)
+endif()
+if(${SOFA_FLOATING_POINT_TYPE} STREQUAL both)
+    message("hello")
+    set(SOFA_WITH_FLOAT 1)
+    set(SOFA_WITH_DOUBLE 1)
+endif()
+
+
 ## Create etc/installedSofa.ini: it contains the paths to share/ and examples/. Compare to the Sofa.ini in the
 ## build directory, this one contains relative paths to the installed resource directory.
 set(SHARE_DIR "${SOFA_REPO_SOURCE_DIR}/share/sofa")
