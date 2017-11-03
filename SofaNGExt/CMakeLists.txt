@@ -103,10 +103,21 @@ set(HEADER_FILES
     # PrecomputedConstraintCorrection
 
     # SofaCollision
-    # LineModel
-    # TriangleModel
     # PointModel
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointModel.inl
+    # LineModel
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineModel.inl
+    # TriangleModel
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleModel.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleModel.inl
     # LocalMinDistance
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LocalMinDistance.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LocalMinDistance.inl
+    # MinProximityIntersection
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/MinProximityIntersection.h
+
 
     # SofaOpenglVisual
     # OglModel
@@ -176,6 +187,13 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyModifier.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyModifier.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyModifier.h
+    #(Point/Line/TriangleModel)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LocalMinDistanceFilter.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointLocalMinDistanceFilter.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineLocalMinDistanceFilter.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.h
+    #(LocalMinDistance)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.h
 )
 
 
@@ -212,6 +230,11 @@ set(SOURCE_FILES
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaExporter/WriteState.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscSolver/NewmarkImplicitSolver.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaHaptics/LCPForceFeedback.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointModel.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineModel.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleModel.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LocalMinDistance.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/MinProximityIntersection.cpp
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -235,6 +258,13 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyModifier.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyModifier.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyModifier.cpp
+    #(Point/Line/TriangleModel)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LocalMinDistanceFilter.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/PointLocalMinDistanceFilter.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/LineLocalMinDistanceFilter.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.cpp
+    #(LocalMinDistance)
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.cpp
 )
 
 
@@ -279,6 +309,8 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_EXPORTER)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_SOLVER)
 #(LCPForceFeedback)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_HAPTICS)
+#(LineModel)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MESH_COLLISION)
 
 ####
 
