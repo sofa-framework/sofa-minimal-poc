@@ -180,6 +180,7 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.inl
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.inl
+    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/DefaultCollisionGroupManager.h
 
 
 
@@ -219,6 +220,12 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.h
     #(LocalMinDistance)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.h
+    #(DefaultCollisionGroupManager)
+    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/SolverMerger.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralExplicitOdeSolver/RungeKutta4Solver.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/StaticSolver.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LMConstraintSolver.h
+
 )
 
 
@@ -263,6 +270,7 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.cpp
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.cpp
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.cpp
+    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/DefaultCollisionGroupManager.cpp
 
 
 
@@ -306,6 +314,11 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.cpp
     #(LocalMinDistance)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.cpp
+    #(DefaultCollisionGroupManager)
+    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/SolverMerger.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralExplicitOdeSolver/RungeKutta4Solver.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/StaticSolver.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LMConstraintSolver.cpp
 )
 
 
@@ -346,6 +359,10 @@ list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_HAPTICS)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MESH_COLLISION)
 #(RigidMapping)
 list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_RIGID)
+#(DefaultCollisionGroupManager)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_COLLISION)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_EXPLICIT_ODE_SOLVER)
+list(APPEND SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_IMPLICIT_ODE_SOLVER)
 
 ####
 
@@ -374,6 +391,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC ${SOFANGEXT_LIBRARIES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
+target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${SOFA_REPO_SOURCE_DIR}/applications/plugins>")
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_d")
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${SOFANGEXT_PLUGIN_VERSION})
 target_compile_definitions(${PROJECT_NAME} PUBLIC COMPILE_DEFINITIONS ${SOFANGEXT_PLUGIN_COMPILER_DEFINITIONS})
