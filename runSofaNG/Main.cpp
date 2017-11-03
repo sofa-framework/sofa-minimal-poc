@@ -221,6 +221,7 @@ int main(int argc, char** argv)
         fileName = files[0];
 
     plugins.push_back("SofaNG");
+    plugins.push_back("SofaNGExt");
     for (unsigned int i=0; i<plugins.size(); i++)
         PluginManager::getInstance().loadPlugin(plugins[i]);
 
