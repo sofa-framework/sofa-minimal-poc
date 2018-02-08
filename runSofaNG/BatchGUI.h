@@ -1,6 +1,6 @@
 /******************************************************************************
 *       SOFA, Simulation Open-Framework Architecture, development version     *
-*                (c) 2006-2016 INRIA, USTL, UJF, CNRS, MGH                    *
+*                (c) 2006-2018 INRIA, USTL, UJF, CNRS, MGH                    *
 *                                                                             *
 * This program is free software; you can redistribute it and/or modify it     *
 * under the terms of the GNU General Public License as published by the Free  *
@@ -13,11 +13,8 @@
 * more details.                                                               *
 *                                                                             *
 * You should have received a copy of the GNU General Public License along     *
-* with this program; if not, write to the Free Software Foundation, Inc., 51  *
-* Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.                   *
+* with this program. If not, see <http://www.gnu.org/licenses/>.              *
 *******************************************************************************
-*                            SOFA :: Applications                             *
-*                                                                             *
 * Authors: The SOFA Team and external contributors (see Authors.txt)          *
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
@@ -26,6 +23,9 @@
 #define SOFA_GUI_BATCHGUI_H
 
 #include <sofa/simulation/Node.h>
+#include <sofa/helper/ArgumentParser.h>
+
+using sofa::helper::ArgumentParser;
 
 namespace sofa
 {
@@ -59,8 +59,9 @@ public:
     /// @name registration of each GUI
     /// @{
 
-    static int InitGUI(const char* name, const std::vector<std::string>& options);
-    static BatchGUI* CreateGUI(const char* name, const std::vector<std::string>& options, sofa::simulation::Node::SPtr groot = NULL, const char* filename = NULL);
+    static BatchGUI* CreateGUI(const char* name, sofa::simulation::Node::SPtr groot = NULL, const char* filename = NULL);
+    static int RegisterGUIParameters(ArgumentParser* argumentParser);
+
 
     static const unsigned int DEFAULT_NUMBER_OF_ITERATIONS;
     /// @}

@@ -5,6 +5,19 @@ project(runSofaNG)
 find_package(SofaFramework REQUIRED)
 find_package(SofaSimulation REQUIRED)
 
+include(cmake/GeneratePluginConfig.cmake)
+# if MSVC then plugins are located in bin/ instead of lib/ on Mac and Linux
+if(MSVC)
+        set(_pluginLocation "bin")
+else()
+        set(_pluginLocation "lib")
+endif()
+set(_configPluginFileName plugin_list.conf)
+set(_defaultConfigPluginFileName "${_configPluginFileName}.default")
+set(_defaultConfigPluginFilePath "${CMAKE_BINARY_DIR}/${_pluginLocation}/${_defaultConfigPluginFileName}")
+sofa_generate_plugin_config(${_defaultConfigPluginFilePath})
+message("Write Plugin list at ${_defaultConfigPluginFilePath}")
+
 set(HEADER_FILES
     #sofang.h
     BatchGUI.h
@@ -32,5 +45,7 @@ endif()
 
 add_executable(${PROJECT_NAME} ${RC_FILES} ${SOURCE_FILES})
 
+target_compile_definitions(${PROJECT_NAME} PUBLIC "CONFIG_PLUGIN_FILENAME=${_configPluginFileName}")
+target_compile_definitions(${PROJECT_NAME} PUBLIC "DEFAULT_CONFIG_PLUGIN_FILENAME=${_defaultConfigPluginFileName}")
 target_link_libraries(${PROJECT_NAME} PUBLIC SofaHelper SofaCore SofaSimulationCommon SofaSimulationTree SofaSimulationGraph)
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "${RUNSOFANG_COMPILER_FLAGS}")
