@@ -167,7 +167,6 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/RigidCapsuleModel.cpp
 )
 
-set(BASE_LIBRARIES SofaCore SofaHelper SofaDefaultType SofaSimulationCommon)
 
 set(SOFANG_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFANG_PLUGIN)
 # Add build macro for Windows
@@ -222,7 +221,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_KERNEL_SOURCE_DIR}/modu
 target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_KERNEL_SOURCE_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_REPO_SOURCE_DIR}/)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${BASE_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType SofaSimulationCommon)
 #target_link_libraries(${PROJECT_NAME} PUBLIC ${OTHER_LIBRARIES})
 
 ## Dependencies
