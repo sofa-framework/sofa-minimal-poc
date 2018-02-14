@@ -76,7 +76,8 @@ set(HEADER_FILES
     # SofaMapping
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.inl
-    # RigidMapping
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.h
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.inl
 
     # SofaConstraint
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.h
@@ -126,50 +127,6 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.h
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.inl
 
-    # Other (improving scene coverage)
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.h
-    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/DefaultCollisionGroupManager.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralDeformable/TriangularBendingSprings.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralDeformable/TriangularBendingSprings.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralDeformable/RegularGridSpringForceField.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralDeformable/RegularGridSpringForceField.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaTopologyMapping/Tetra2TriangleTopologicalMapping.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.inl
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/MeshSpringForceField.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/MeshSpringForceField.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedPlaneConstraint.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedPlaneConstraint.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/TrianglePressureForceField.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/TrianglePressureForceField.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralSimpleFem/TetrahedralCorotationalFEMForceField.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralSimpleFem/TetrahedralCorotationalFEMForceField.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangularFEMForceField.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangularFEMForceField.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/UncoupledConstraintCorrection.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/UncoupledConstraintCorrection.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/SphereLoader.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/NewProximityIntersection.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/NewProximityIntersection.inl
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscTopology/TopologicalChangeProcessor.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGraphComponent/BackgroundSetting.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGraphComponent/Gravity.h
-
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -207,11 +164,6 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.h
     #(LocalMinDistance)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.h
-    #(DefaultCollisionGroupManager)
-    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/SolverMerger.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralExplicitOdeSolver/RungeKutta4Solver.h
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/StaticSolver.h
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LMConstraintSolver.h
 )
 
 
@@ -250,6 +202,7 @@ set(SOURCE_FILES
 
     # SofaMapping
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/BarycentricMapping.cpp
+    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.cpp
 
     # SofaConstraint
     ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/GenericConstraintCorrection.cpp
@@ -287,33 +240,6 @@ set(SOURCE_FILES
     # SofaMass
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseMechanics/DiagonalMass.cpp
 
-    # Other (improving scene coverage)
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseVisual/VisualStyle.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaRigid/RigidMapping.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/MeshGmshLoader.cpp
-    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/DefaultCollisionGroupManager.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralDeformable/TriangularBendingSprings.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralDeformable/RegularGridSpringForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaTopologyMapping/Tetra2TriangleTopologicalMapping.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/PointSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/EdgeSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TriangleSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/TetrahedronSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/QuadSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseTopology/HexahedronSetTopologyAlgorithms.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaDeformable/MeshSpringForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/PlaneForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/FixedPlaneConstraint.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaBoundaryCondition/TrianglePressureForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralSimpleFem/TetrahedralCorotationalFEMForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscFem/TriangularFEMForceField.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/UncoupledConstraintCorrection.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralLoader/SphereLoader.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/NewProximityIntersection.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaMiscTopology/TopologicalChangeProcessor.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGraphComponent/BackgroundSetting.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGraphComponent/Gravity.cpp
-
 
     # Dependencies
     #(HexahedronFEMForceField)
@@ -344,26 +270,9 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.cpp
     #(LocalMinDistance)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.cpp
-    #(DefaultCollisionGroupManager)
-    ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaMiscCollision/SolverMerger.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaGeneralExplicitOdeSolver/RungeKutta4Solver.cpp
-    ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaImplicitOdeSolver/StaticSolver.cpp
-    ${SOFA_REPO_SOURCE_DIR}/modules/SofaConstraint/LMConstraintSolver.cpp
 )
 
-
-sofa_add_generic(${SOFA_REPO_SOURCE_DIR}/applications/plugins/CImgPlugin CImgPlugin "Plugin" ON)
-
 set(SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFAMINIMAL2_PLUGIN)
-
-set(SOFAMINIMAL2_LIBRARIES
-    SofaMinimal1
-    metis
-    csparse # SparseLUSolver, SparseCholeskySolver
-    newmat
-    )
-
-set(SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS "")
 # Add build macros for Windows
 #(TetrahedronFEMForceField, HexahedronFEMForceField, TriangleFEMForceField)
 list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SIMPLE_FEM)
@@ -391,22 +300,6 @@ list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_HAPTICS)
 list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MESH_COLLISION)
 #(RigidMapping)
 list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_RIGID)
-#(DefaultCollisionGroupManager)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_COLLISION)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_EXPLICIT_ODE_SOLVER)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_IMPLICIT_ODE_SOLVER)
-#(TriangularBendingSprings)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_DEFORMABLE)
-#(Tetra2TriangleTopologicalMapping)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_TOPOLOGY_MAPPING)
-#(PlaneForceField)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_BOUNDARY_CONDITION)
-#(TetrahedralCorotationalFEMForceField)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GENERAL_SIMPLE_FEM)
-#(TopologicalChangeProcessor)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MISC_TOPOLOGY)
-#(BackgroundSetting)
-list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_GRAPH_COMPONENT)
 
 ####
 
@@ -427,6 +320,11 @@ set(SOFAMINIMAL2_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
 
+set(SOFAMINIMAL2_LIBRARIES
+    SofaMinimal1
+    metis
+    csparse # SparseLUSolver, SparseCholeskySolver
+    )
 target_link_libraries(${PROJECT_NAME} PUBLIC ${SOFAMINIMAL2_LIBRARIES})
 
 ## Dependencies

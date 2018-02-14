@@ -276,14 +276,11 @@ add_subdirectory(${SOFA_REPO_SOURCE_DIR}/extlibs "${CMAKE_CURRENT_BINARY_DIR}/ex
 # Impose METIS library because of SparseLDLSolver
 set(SOFA_BUILD_METIS ON CACHE BOOL "" FORCE)
 
-### Main Sofa subdirectories
-
-#add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaBase)
-#add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaFramework "${CMAKE_CURRENT_BINARY_DIR}/SofaFramework")
-#add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaSimulation "${CMAKE_CURRENT_BINARY_DIR}/SofaSimulation")
+### SofaMinimal levels
 sofa_add_plugin( SofaMinimal0 SofaMinimal0 ON)
 sofa_add_plugin( SofaMinimal1 SofaMinimal1 ON)
 sofa_add_plugin( SofaMinimal2 SofaMinimal2 ON)
+sofa_add_plugin( SofaMinimal3 SofaMinimal3 OFF)
 
 set(PLUGIN_SOFAMINIMAL1 ON CACHE BOOL "" FORCE)
 add_subdirectory( runSofaMinimal runSofaMinimal )

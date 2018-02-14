@@ -1,4 +1,4 @@
-#include "sofaminimal1.h"
+#include "sofaminimal3.h"
 
 #include <cstring>
 #include <string>
@@ -10,12 +10,12 @@ namespace component
 {
 
 extern "C" {
-    SOFA_SOFAMINIMAL1_API void initExternalModule();
-    SOFA_SOFAMINIMAL1_API const char* getModuleName();
-    SOFA_SOFAMINIMAL1_API const char* getModuleVersion();
-    SOFA_SOFAMINIMAL1_API const char* getModuleLicense();
-    SOFA_SOFAMINIMAL1_API const char* getModuleDescription();
-    SOFA_SOFAMINIMAL1_API const char* getModuleComponentList();
+    SOFA_SOFAMINIMAL3_API void initExternalModule();
+    SOFA_SOFAMINIMAL3_API const char* getModuleName();
+    SOFA_SOFAMINIMAL3_API const char* getModuleVersion();
+    SOFA_SOFAMINIMAL3_API const char* getModuleLicense();
+    SOFA_SOFAMINIMAL3_API const char* getModuleDescription();
+    SOFA_SOFAMINIMAL3_API const char* getModuleComponentList();
 }
 
 void initExternalModule()
@@ -29,7 +29,7 @@ void initExternalModule()
 
 const char* getModuleName()
 {
-    return "SofaMinimal1";
+    return "SofaMinimal3";
 }
 
 const char* getModuleVersion()
@@ -39,7 +39,7 @@ const char* getModuleVersion()
 
 const char* getModuleDescription()
 {
-    return "Sofa Minimal 1";
+    return "Sofa Minimal 3";
 }
 
 const char* getModuleComponentList()
@@ -55,8 +55,6 @@ const char* getModuleLicense()
 {
     return "MIMESIS(c)";
 }
-
-SOFA_LINK_CLASS(MechanicalObject)
 
 
 } // namespace component

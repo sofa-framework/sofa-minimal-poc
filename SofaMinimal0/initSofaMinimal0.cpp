@@ -10,12 +10,12 @@ namespace component
 {
 
 extern "C" {
-    SOFA_SOFAMINIMAL_API void initExternalModule();
-    SOFA_SOFAMINIMAL_API const char* getModuleName();
-    SOFA_SOFAMINIMAL_API const char* getModuleVersion();
-    SOFA_SOFAMINIMAL_API const char* getModuleLicense();
-    SOFA_SOFAMINIMAL_API const char* getModuleDescription();
-    SOFA_SOFAMINIMAL_API const char* getModuleComponentList();
+    SOFA_SOFAMINIMAL0_API void initExternalModule();
+    SOFA_SOFAMINIMAL0_API const char* getModuleName();
+    SOFA_SOFAMINIMAL0_API const char* getModuleVersion();
+    SOFA_SOFAMINIMAL0_API const char* getModuleLicense();
+    SOFA_SOFAMINIMAL0_API const char* getModuleDescription();
+    SOFA_SOFAMINIMAL0_API const char* getModuleComponentList();
 }
 
 void initExternalModule()
@@ -39,7 +39,7 @@ const char* getModuleVersion()
 
 const char* getModuleDescription()
 {
-    return "Sofa Next Gen";
+    return "Sofa Minimal 0";
 }
 
 const char* getModuleComponentList()

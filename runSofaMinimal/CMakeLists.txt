@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 
 project(runSofaMinimal)
 
-find_package(SofaFramework REQUIRED)
-find_package(SofaSimulation REQUIRED)
+find_package(SofaMinimal0 REQUIRED)
 
 include(cmake/GeneratePluginConfig.cmake)
 # if MSVC then plugins are located in bin/ instead of lib/ on Mac and Linux
