@@ -1,0 +1,62 @@
+cmake_minimum_required(VERSION 3.0)
+
+set(SOFAMINIMAL0_PLUGIN_NAME SofaMinimal0)
+project(${SOFAMINIMAL0_PLUGIN_NAME})
+
+set(SOFAMINIMAL0_PLUGIN_MAJOR_VERSION 0)
+set(SOFAMINIMAL0_PLUGIN_MINOR_VERSION 1)
+set(SOFAMINIMAL0_PLUGIN_VERSION ${SOFAMINIMAL0_PLUGIN_MAJOR_VERSION}.${SOFAMINIMAL0_PLUGIN_MINOR_VERSION})
+
+set(HEADER_FILES
+    sofaminimal0.h
+    )
+
+set(SOURCE_FILES
+    initSofaMinimal0.cpp
+    )
+
+add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaFramework "${CMAKE_CURRENT_BINARY_DIR}/SofaFramework")
+add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaSimulation "${CMAKE_CURRENT_BINARY_DIR}/SofaSimulation")
+
+find_package(SofaFramework REQUIRED)
+find_package(SofaSimulation REQUIRED)
+
+configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaBase/config.h.in "${CMAKE_BINARY_DIR}/include/SofaBase/config.h")
+configure_file(${SOFA_KERNEL_SOURCE_DIR}/SofaCommon/config.h.in "${CMAKE_BINARY_DIR}/include/SofaCommon/config.h")
+configure_file(sofaminimal0.h.in ${SOFAMINIMAL0_PLUGIN_NAME}/sofaminimal0.h)
+configure_file(SofaMinimal0Config.cmake.in ${CMAKE_BINARY_DIR}/cmake/SofaMinimal0Config.cmake)
+
+#install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${SOFAMINIMAL0_PLUGIN_NAME}/sofang.h DESTINATION "include/${SOFAMINIMAL0_PLUGIN_NAME}")
+
+set(SOFAMINIMAL0_PLUGIN_COMPILER_FLAGS "${SOFAMINIMAL0_PLUGIN_COMPILER_FLAGS} -DSOFA_BUILD_SOFAMINIMAL0_PLUGIN")
+set(SOFAMINIMAL0_PLUGIN_INSTALL_DIR share/sofa/plugins/${PROJECT_NAME})
+
+add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} )
+# add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${OTHER_HEADER_FILES} ${OTHER_SOURCE_FILES} )
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_REPO_SOURCE_DIR}/modules)
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_KERNEL_SOURCE_DIR}/modules)
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_KERNEL_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_REPO_SOURCE_DIR}/)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC SofaCore SofaHelper SofaDefaultType SofaSimulationCommon)
+
+target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
+target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
+set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_d")
+set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${SOFAMINIMAL0_PLUGIN_VERSION})
+# set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "${SOFAMINIMAL0_PLUGIN_COMPILER_FLAGS}")
+target_compile_definitions(${PROJECT_NAME} PUBLIC COMPILE_DEFINITIONS ${SOFAMINIMAL0_PLUGIN_COMPILER_DEFINITIONS})
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${HEADER_FILES}")
+
+#install(TARGETS ${PROJECT_NAME}
+#        COMPONENT ${SOFAMINIMAL0_PLUGIN_NAME}_libraries
+#        EXPORT ${SOFAMINIMAL0_PLUGIN_NAME}Targets
+#        RUNTIME DESTINATION bin
+#        LIBRARY DESTINATION lib
+#        ARCHIVE DESTINATION lib
+#        PUBLIC_HEADER DESTINATION "include/${PROJECT_NAME}")
+
+#install(DIRECTORY scenes/ DESTINATION ${SOFAMINIMAL0_PLUGIN_INSTALL_DIR}/scenes)
+#install(DIRECTORY data/ DESTINATION ${SOFAMINIMAL0_PLUGIN_INSTALL_DIR}/data)
+

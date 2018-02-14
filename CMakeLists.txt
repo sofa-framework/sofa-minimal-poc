@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(TheSofaNG)
+project(SofaMinimal)
 
 set(SOFA_REPO_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../" CACHE PATH "Path to Sofa")
 set(SOFA_KERNEL_SOURCE_DIR "${SOFA_REPO_SOURCE_DIR}/SofaKernel" )
@@ -264,8 +264,8 @@ option(SOFA_USE_MASK "Use mask optimization" OFF)
 
 
 ### Testing
-option(SOFANG_BUILD_TESTS "Compile the automatic tests for SofaNG, along with the gtest library." OFF)
-if(SOFANG_BUILD_TESTS)
+option(SOFAMINIMAL_BUILD_TESTS "Compile the automatic tests for SofaMinimal, along with the gtest library." OFF)
+if(SOFAMINIMAL_BUILD_TESTS)
     # Enable testing features of cmake, like the add_test() command.
     enable_testing()
     add_subdirectory(${SOFA_REPO_SOURCE_DIR}/extlibs/gtest extlibs/gtest)
@@ -279,20 +279,18 @@ set(SOFA_BUILD_METIS ON CACHE BOOL "" FORCE)
 ### Main Sofa subdirectories
 
 #add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaBase)
-option(SOFANG_ENABLED "Enable SofaNG" ON)
-if(SOFANG_ENABLED)
-    add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaFramework "${CMAKE_CURRENT_BINARY_DIR}/SofaFramework")
-    add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaSimulation "${CMAKE_CURRENT_BINARY_DIR}/SofaSimulation")
-    sofa_add_plugin( SofaNG SofaNG )
-    sofa_add_plugin( SofaNGExt SofaNGExt )
+#add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaFramework "${CMAKE_CURRENT_BINARY_DIR}/SofaFramework")
+#add_subdirectory(${SOFA_KERNEL_SOURCE_DIR}/SofaSimulation "${CMAKE_CURRENT_BINARY_DIR}/SofaSimulation")
+sofa_add_plugin( SofaMinimal0 SofaMinimal0 ON)
+sofa_add_plugin( SofaMinimal1 SofaMinimal1 ON)
+sofa_add_plugin( SofaMinimal2 SofaMinimal2 ON)
 
-    set(PLUGIN_SOFANG ON CACHE BOOL "" FORCE)
-    add_subdirectory( runSofaNG runSofaNG )
-endif()
+set(PLUGIN_SOFAMINIMAL1 ON CACHE BOOL "" FORCE)
+add_subdirectory( runSofaMinimal runSofaMinimal )
 
-if(SOFANG_BUILD_TESTS)
+if(SOFAMINIMAL_BUILD_TESTS)
     # Library used to write high level tests involving many components.
-    add_subdirectory(SofaNGTest SofaNGTest)
+#    add_subdirectory(SofaMinimalTest SofaMinimalTest)
 endif()
 
 ## Build external projects at the same time

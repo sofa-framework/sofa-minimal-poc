@@ -1,0 +1,12 @@
+# CMake package configuration file for SofaFramework
+
+@PACKAGE_INIT@
+
+list(FIND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}" HAS_SOFAFRAMEWORK_CMAKE_MODULE_PATH)
+if(HAS_SOFAFRAMEWORK_CMAKE_MODULE_PATH EQUAL -1)
+    list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
+endif()
+
+include(SofaMacros)
+
+check_required_components(SofaFramework SofaSimulation)
