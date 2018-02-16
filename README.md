@@ -1,3 +1,12 @@
+## Introduction
+This work is a proof of concept of a minimal version of SOFA Framework.
+
+SofaMinimal contains:
+- SofaMinimal0 = SofaCore + SofaHelper + SofaDefaultType + SofaSimulationCommon
+- SofaMinimal1 = SofaMinimal0 + Most basic components of SOFA
+- SofaMinimal2 = SofaMinimal1 + classic/often-used components of SOFA
+- SofaMinimal3 = SofaMinimal2 + components present in SOFA scene tests
+
 ## List of components / Roadmap (Kind of)
 https://goo.gl/XoYa9L
 
