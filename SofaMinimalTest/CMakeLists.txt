@@ -3,7 +3,7 @@ project(SofaMinimalTest)
 
 set(SOFAMINIMALTEST_VERSION 0.1)
 
-find_package(SofaMinimal1 REQUIRED)
+find_package(SofaMinimal2 REQUIRED)
 #find_package(SofaMisc REQUIRED)
 #find_package(SceneCreator REQUIRED)
 
@@ -12,7 +12,7 @@ set(LEGACY_SOFATEST_DIR ${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaTest )
 # Sofaesque GTest 
 add_subdirectory(SofaMinimalGTestMain)    
 # Unit tests
-add_subdirectory(framework_test)
+add_subdirectory(SofaMinimalFramework_test)
 add_subdirectory(SofaMinimalBaseMechanics_test)
 add_subdirectory(SofaMinimalLoader_test)
 #add_subdirectory(SofaMinimalExplicitOdeSolver_test) #too much deps on SceneCreator
@@ -31,8 +31,6 @@ set(HEADER_FILES
     #MultiMapping_test.h
     #Multi2Mapping_test.h
     #PrimitiveCreation.h
-    ${LEGACY_SOFATEST_DIR}/Sofa_test.h
-    ${LEGACY_SOFATEST_DIR}/TestMessageHandler.h
     #LogMessage.h
 )
 
@@ -40,7 +38,6 @@ set(SOURCE_FILES
     ${LEGACY_SOFATEST_DIR}/InitPlugin_test.cpp
     #Elasticity_test.cpp
     #PrimitiveCreation.cpp
-    #${LEGACY_SOFATEST_DIR}/Sofa_test.cpp
 )
 
 # Workaround to include symbol for TestMessageHandler for Windows
@@ -52,12 +49,12 @@ endif()
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
 
-target_link_libraries(${PROJECT_NAME} SofaCore SofaHelper SofaDefaultType SofaMinimal1)
+target_link_libraries(${PROJECT_NAME} SofaCore SofaHelper SofaDefaultType SofaMinimal2)
 target_link_libraries(${PROJECT_NAME} gtest)
 target_include_directories(${PROJECT_NAME} PUBLIC ${SOFA_REPO_SOURCE_DIR}/applications/plugins)
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_include_directories(${PROJECT_NAME} PUBLIC "$<INSTALL_INTERFACE:include>")
-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-DSOFA_BUILD_TEST -DSOFA_SRC_DIR=\"\\\"${CMAKE_CURRENT_SOURCE_DIR}/../../..\\\"\"")
+set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-DSOFA_BUILD_TEST -DSOFA_SRC_DIR=\"\\\"${SOFA_REPO_SOURCE_DIR}\\\"\"")
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${HEADER_FILES}")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/..")
 

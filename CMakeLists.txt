@@ -268,6 +268,7 @@ option(SOFAMINIMAL_BUILD_TESTS "Compile the automatic tests for SofaMinimal, alo
 if(SOFAMINIMAL_BUILD_TESTS)
     # Enable testing features of cmake, like the add_test() command.
     enable_testing()
+    set(SOFA_BUILD_TESTS ON) # needed when building SofaHelper to include BaseTest and TestMessageHandler
     add_subdirectory(${SOFA_REPO_SOURCE_DIR}/extlibs/gtest extlibs/gtest)
 endif()
 
@@ -287,7 +288,15 @@ add_subdirectory( runSofaMinimal runSofaMinimal )
 
 if(SOFAMINIMAL_BUILD_TESTS)
     # Library used to write high level tests involving many components.
-#    add_subdirectory(SofaMinimalTest SofaMinimalTest)
+#    add_subdirectory(${SOFA_REPO_SOURCE_DIR}/applications/plugins/SofaTest SofaTest)
+    # Tests for all the modules, written using SofaTest.
+#    add_subdirectory(${SOFA_REPO_SOURCE_DIR}/modules/tests)
+
+    # Not sure what is it
+#    add_subdirectory(applications/plugins/SofaTest/SofaTest_test SofaTest/SofaTest_test)
+
+    # Library used to write high level tests involving many components.
+    add_subdirectory(SofaMinimalTest SofaMinimalTest)
 endif()
 
 ## Build external projects at the same time

@@ -11,6 +11,6 @@ set(SOURCE_FILES
 
 add_definitions("-DSOFAEXPLICITODESOLVER_TEST_SCENES_DIR=\"${LEGACY_SOFAEXPLICITODESOLVERTEST_DIR}/scenes\"")
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME} SofaGTestMain SofaMinimalTest)
+target_link_libraries(${PROJECT_NAME} SofaMinimalGTestMain SofaMinimalTest)
 
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})

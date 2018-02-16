@@ -28,5 +28,4 @@
 * (and this workaround is only necessary to Windows)
 ******************************************************************************/
 
-#include <SofaTest/TestMessageHandler.h>
-
+#include <sofa/helper/testing/BaseTest.h>
