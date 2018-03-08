@@ -26,7 +26,6 @@ set(SOURCE_FILES
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/Quater_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/SVector_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/vector_test.cpp
-    ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/gl/GLSLShader_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/io/MeshOBJ_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/io/MeshSTL_test.cpp
     ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/system/FileMonitor_test.cpp
@@ -41,6 +40,10 @@ set(SOURCE_FILES
 
 if(SOFA_HAVE_PNG)
     list(APPEND SOURCE_FILES ${LEGACY_SOFAFRAMEWORKTEST_DIR}/helper/io/ImagePNG_test.cpp)
+endif()
+
+if(NOT SOFA_NO_OPENGL AND SOFA_HAVE_GLEW)
+    list(APPEND SOURCE_FILES helper/gl/GLSLShader_test.cpp)
 endif()
 
 include_directories(${gtest_SOURCE_DIR}/include)
