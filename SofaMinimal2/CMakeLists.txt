@@ -164,6 +164,7 @@ set(HEADER_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.h
     #(LocalMinDistance)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.h
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaUserInteraction/RayModel.h
 )
 
 
@@ -270,6 +271,7 @@ set(SOURCE_FILES
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaMeshCollision/TriangleLocalMinDistanceFilter.cpp
     #(LocalMinDistance)
     ${SOFA_KERNEL_SOURCE_DIR}/modules/SofaBaseCollision/BaseProximityIntersection.cpp
+    ${SOFA_REPO_SOURCE_DIR}/modules/SofaUserInteraction/RayModel.cpp
 )
 
 set(SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_SOFAMINIMAL2_PLUGIN)
@@ -300,6 +302,8 @@ list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_HAPTICS)
 list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_MESH_COLLISION)
 #(RigidMapping)
 list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_RIGID)
+#(LocalMinDistance)
+list(APPEND SOFAMINIMAL2_PLUGIN_COMPILER_DEFINITIONS SOFA_BUILD_USER_INTERACTION)
 
 ####
 
