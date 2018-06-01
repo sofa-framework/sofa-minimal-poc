@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.1)
-
 project(SofaMinimal)
 
 set(SOFA_REPO_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../" CACHE PATH "Path to Sofa")
@@ -48,9 +47,9 @@ set(ARCHIVE_OUTPUT_DIRECTORY lib)
 set(RUNTIME_OUTPUT_DIRECTORY bin)
 
 if(WIN32)
-	set(LIBRARY_OUTPUT_DIRECTORY ${RUNTIME_OUTPUT_DIRECTORY})
+        set(LIBRARY_OUTPUT_DIRECTORY ${RUNTIME_OUTPUT_DIRECTORY})
 else()
-	set(LIBRARY_OUTPUT_DIRECTORY ${ARCHIVE_OUTPUT_DIRECTORY})
+        set(LIBRARY_OUTPUT_DIRECTORY ${ARCHIVE_OUTPUT_DIRECTORY})
 endif()
 
 ## Set the output directories globally
@@ -67,7 +66,15 @@ list(APPEND CMAKE_MODULE_PATH "${SOFA_KERNEL_SOURCE_DIR}/SofaFramework")
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/extlibs)
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/applications/plugins)
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/applications/packages)
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR}/applications/projects)
+
+# Create etc/sofa.ini: it contains the paths to share/ and examples/. In the
+# build directory, it points to the source tree,
+set(SHARE_DIR "${SOFA_REPO_SOURCE_DIR}/share")
+set(EXAMPLES_DIR "${SOFA_REPO_SOURCE_DIR}/examples")
+configure_file(${SOFA_KERNEL_SOURCE_DIR}/etc/sofa.ini.in "${CMAKE_BINARY_DIR}/etc/sofa.ini")
+
 
 ## RPATH
 if(UNIX)
@@ -82,7 +89,7 @@ if(UNIX)
 
     if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         set(CMAKE_MACOSX_RPATH ON)
-        
+
     endif()
 
 endif(UNIX)
@@ -90,8 +97,9 @@ endif(UNIX)
 include(CompilerOptions)
 
 
-## Boost is now mandatory.
-find_package(Boost QUIET)
+## Boost (1.54.0 or higher) is now mandatory.
+set(BOOST_MIN_VERSION "1.54.0")
+find_package(Boost ${BOOST_MIN_VERSION} QUIET)
 if(NOT Boost_FOUND)
     message("Did not find a boost directory from Boost_LIBRARY_DIR and Boost_INCLUDE_DIR, will try to search one in possible directories")
     ## Try to find an installed boost.
@@ -102,11 +110,11 @@ if(NOT Boost_FOUND)
     ## TODO: Set an other hint from the PATH, as the user should set it with the binaries directory when he launches Sofa
     if(WIN32)
         #set roots
-        set(BOOST_TEST_ROOTS 
+        set(BOOST_TEST_ROOTS
             "C:" "D:" "E:" "F:" "G:" "H:"
             )
         #set credible subdirectories
-        set(BOOST_TEST_SUBDIRECTORIES 
+        set(BOOST_TEST_SUBDIRECTORIES
             "/" "/local" "/Dependencies" "/Program Files" "/Program Files (x86)"
             )
 
@@ -157,7 +165,7 @@ if(NOT Boost_FOUND)
     endif()
 endif()
 
-find_package(Boost REQUIRED)
+find_package(Boost ${BOOST_MIN_VERSION} REQUIRED)
 
 ### Dependency pack for Windows
 if(MSVC)
@@ -169,7 +177,7 @@ if(MSVC)
         set(DEPENDENCY_PACK_DIR "${SOFA_DEPENDENCY_PACK_DIR}")
     else()
         # Default
-        set(DEPENDENCY_PACK_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+        set(DEPENDENCY_PACK_DIR "${SOFA_REPO_SOURCE_DIR}")
     endif()
 
     list(APPEND CMAKE_INCLUDE_PATH ${DEPENDENCY_PACK_DIR}/include)
@@ -200,7 +208,6 @@ if(MSVC)
     install(DIRECTORY ${DEPENDENCY_PACK_DIR}/include/ DESTINATION include)
 endif()
 
-
 ### Mask
 option(SOFA_USE_MASK "Use mask optimization" OFF)
 
@@ -229,6 +236,11 @@ elseif(${SOFA_FLOATING_POINT_TYPE} STREQUAL float)
     set(SOFA_FLOAT 1)           # Used in sofa/config.h.in
 endif()
 
+# If you really don't understand the negated logics of SOFA_DOUBLE and
+# SOFA_FLOAT please consider using SOFA_WITH_FLOAT and SOFA_WITH_DOUBLE.
+# Eg: SOFA_WITH_FLOAT indicate that you need to generate the
+# float code and SOFA_WITH_DOUBLE indicates that you
+# nedd to generate the double related code.
 if(${SOFA_FLOATING_POINT_TYPE} STREQUAL float)
     set(SOFA_WITH_FLOAT 1)
 endif()
@@ -240,23 +252,8 @@ if(${SOFA_FLOATING_POINT_TYPE} STREQUAL both)
     set(SOFA_WITH_DOUBLE 1)
 endif()
 
-
-## Create etc/installedSofa.ini: it contains the paths to share/ and examples/. Compare to the Sofa.ini in the
-## build directory, this one contains relative paths to the installed resource directory.
-set(SHARE_DIR "${SOFA_REPO_SOURCE_DIR}/share/sofa")
-set(EXAMPLES_DIR "${SOFA_REPO_SOURCE_DIR}/share/sofa/examples")
-configure_file(${SOFA_KERNEL_SOURCE_DIR}/etc/sofa.ini.in "${CMAKE_BINARY_DIR}/etc/installedSofa.ini")
-install(FILES "${CMAKE_BINARY_DIR}/etc/installedSofa.ini" DESTINATION etc RENAME sofa.ini)
-
-option(SOFA_INSTALL_RESOURCES_FILES "Copy resources files (etc/, share/, examples/) when installing" ON)
-## Install resource files
-if(SOFA_INSTALL_RESOURCES_FILES)
-    install(DIRECTORY ${SOFA_REPO_SOURCE_DIR}/share/ DESTINATION share/sofa)
-    install(DIRECTORY ${SOFA_REPO_SOURCE_DIR}examples/ DESTINATION share/sofa/examples)
-endif()
-
 # Temporary (todo: think about this typedef thing)
-install(DIRECTORY modules/sofa/component/typedef/ DESTINATION include/sofa/component/typedef)
+#install(DIRECTORY modules/sofa/component/typedef/ DESTINATION include/sofa/component/typedef)
 
 
 ### Mask
@@ -309,6 +306,7 @@ if(NOT "${SOFA_EXTERNAL_DIRECTORIES}" STREQUAL "")
     endforeach()
 endif()
 
+
 ## Custom
 if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/custom.cmake")
     message("Adding custom file")
@@ -316,20 +314,37 @@ if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/custom.cmake")
 endif()
 
 
+# Install configuration:
 ## when installing, keep an eye on options/params/sources used for compilation
 ## this should be internal and not delivered, but this is definitively useful
 sofa_install_git_version( "sofa" ${CMAKE_CURRENT_SOURCE_DIR} )
 install(FILES "${CMAKE_BINARY_DIR}/CMakeCache.txt" DESTINATION .)
-install(FILES "${CMAKE_SOURCE_DIR}/README.md" DESTINATION .)
-install(FILES "${CMAKE_SOURCE_DIR}/CHANGELOG.md" DESTINATION .)
-install(FILES "${CMAKE_SOURCE_DIR}/LICENCE.txt" DESTINATION .)
-install(FILES "${CMAKE_SOURCE_DIR}/Authors.txt" DESTINATION .)
+install(FILES "${SOFA_REPO_SOURCE_DIR}/README.md" DESTINATION .)
+install(FILES "${SOFA_REPO_SOURCE_DIR}/CHANGELOG.md" DESTINATION .)
+install(FILES "${SOFA_REPO_SOURCE_DIR}/LICENSE.LGPL.txt" DESTINATION .)
+install(FILES "${SOFA_REPO_SOURCE_DIR}/Authors.txt" DESTINATION .)
+
+## Create etc/installedSofa.ini: it contains the paths to share/ and examples/. Compare to the Sofa.ini in the
+## build directory, this one contains relative paths to the installed resource directory.
+set(SHARE_DIR "../share/sofa")
+set(EXAMPLES_DIR "../share/sofa/examples")
+configure_file(${SOFA_KERNEL_SOURCE_DIR}/etc/sofa.ini.in "${CMAKE_BINARY_DIR}/etc/installedSofa.ini")
+install(FILES "${CMAKE_BINARY_DIR}/etc/installedSofa.ini" DESTINATION etc RENAME sofa.ini)
+
+
+option(SOFA_INSTALL_RESOURCES_FILES "Copy resources files (etc/, share/, examples/) when installing" ON)
+## Install resource files
+if(SOFA_INSTALL_RESOURCES_FILES)
+    install(DIRECTORY ${SOFA_REPO_SOURCE_DIR}/share/ DESTINATION share/sofa)
+    install(DIRECTORY ${SOFA_REPO_SOURCE_DIR}/examples/ DESTINATION share/sofa/examples)
+endif()
+
 
 #CPack install
-SET(CPACK_PACKAGE_VERSION "16.dev.0")
-SET(CPACK_PACKAGE_VERSION_MAJOR "16")
-SET(CPACK_PACKAGE_VERSION_MINOR "dev")
-SET(CPACK_PACKAGE_VERSION_PATCH "0")
+SET(CPACK_PACKAGE_VERSION "17.12.00")
+SET(CPACK_PACKAGE_VERSION_MAJOR "17")
+SET(CPACK_PACKAGE_VERSION_MINOR "12")
+SET(CPACK_PACKAGE_VERSION_PATCH "00")
 
 #dirty hack to pack component we want (named BundlePack from runSofa for example, and that will install .app + share)
 #if not set, it will install everything as usual
@@ -341,13 +356,3 @@ if(TEMP_CPACK_COMPONENTS_ALL)
 endif()
 
 INCLUDE(CPack)
-
-# Create etc/sofa.ini: it contains the paths to share/ and examples/. In the
-# build directory, it points to the source tree,
-set(SHARE_DIR "${SOFA_REPO_SOURCE_DIR}/share")
-set(EXAMPLES_DIR "${SOFA_REPO_SOURCE_DIR}/examples")
-configure_file(${SOFA_KERNEL_SOURCE_DIR}/etc/sofa.ini.in "${CMAKE_BINARY_DIR}/etc/sofa.ini")
-
-message("SHARE_DIR = ${SHARE_DIR}")
-message("EXAMPLES_DIR = ${EXAMPLES_DIR}")
-
